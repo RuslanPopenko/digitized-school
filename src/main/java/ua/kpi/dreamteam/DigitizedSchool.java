@@ -6,12 +6,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DigitalizedSchool {
+public class DigitizedSchool {
 
-    static final Logger logger = LogManager.getLogger(DigitalizedSchool.class.getName());
+    static final Logger logger = LogManager.getLogger(DigitizedSchool.class.getName());
 
     public static void main(String[] args) {
         logger.info("entered application");
-        SpringApplication.run(DigitalizedSchool.class, args);
+        SpringApplication.run(DigitizedSchool.class, args);
     }
 }
