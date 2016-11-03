@@ -11,12 +11,17 @@ import java.io.Serializable;
  */
 @Entity
 public class Person extends AbstractIdEntity<Long> implements Serializable {
-
     @Column
     private String firstName;
 
     @Column
     private String lastName;
+
+    @Column
+    private Integer age;
+
+    @Column
+    private Boolean sex;
 
     public String getFirstName() {
         return firstName;
@@ -34,11 +39,19 @@ public class Person extends AbstractIdEntity<Long> implements Serializable {
         this.lastName = lastName;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Boolean getSex() {
+        return sex;
+    }
+
+    public void setSex(Boolean sex) {
+        this.sex = sex;
     }
 }
