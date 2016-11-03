@@ -2,14 +2,14 @@ package ua.kpi.dreamteam.restcontrollers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.kpi.dreamteam.entities.Teacher;
+import ua.kpi.dreamteam.entities.School;
 import ua.kpi.dreamteam.restcontrollers.superclasses.AbstractRestController;
-import ua.kpi.dreamteam.services.TeacherService;
+import ua.kpi.dreamteam.services.SchoolService;
 
 /**
- * Created by Макс on 03.11.2016.
+ * Created by yevhenii on 03.11.16.
  */
 @RestController
-@RequestMapping("/api/teachers")
-public class TeacherRestControllerImpl extends AbstractRestController<Teacher, Long, TeacherService> {
+@RequestMapping("/api/schools")
+public class SchoolRestControllerImpl extends AbstractRestController<School, Long, SchoolService> {
 }

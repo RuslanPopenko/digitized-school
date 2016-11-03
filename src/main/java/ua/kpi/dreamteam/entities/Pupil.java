@@ -58,4 +58,14 @@ public class Pupil extends AbstractIdEntity<Long> implements Serializable {
     public void setSubjects(Set<Subject> subjects) {
         this.subjects = subjects;
     }
+
+    @Override
+    public String toString() {
+        return "Pupil{" +
+                "person=" + person +
+                ", school=" + school +
+                ", schoolClass=" + schoolClass +
+                ", subjects=" + subjects +
+                '}';
+    }
 }

@@ -54,4 +54,14 @@ public class Person extends AbstractIdEntity<Long> implements Serializable {
     public void setSex(Boolean sex) {
         this.sex = sex;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                '}';
+    }
 }

@@ -12,6 +12,7 @@ import java.util.Set;
 /**
  * Created by Макс on 03.11.2016.
  */
+@Entity
 public class Teacher extends AbstractIdEntity<Long> implements Serializable {
     @Column
     private Person person;
@@ -58,5 +59,15 @@ public class Teacher extends AbstractIdEntity<Long> implements Serializable {
 
     public void setSubjects(Set<Subject> subjects) {
         this.subjects = subjects;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "person=" + person +
+                ", schools=" + schools +
+                ", schoolClasses=" + schoolClasses +
+                ", subjects=" + subjects +
+                '}';
     }
 }
