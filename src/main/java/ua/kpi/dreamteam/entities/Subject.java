@@ -29,4 +29,20 @@ public class Subject extends AbstractIdEntity<Long> implements Serializable{
                 "name='" + name + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Subject subject = (Subject) o;
+
+        return name != null ? name.equals(subject.name) : subject.name == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
 }

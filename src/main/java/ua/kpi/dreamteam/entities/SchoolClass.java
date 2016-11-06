@@ -70,4 +70,27 @@ public class SchoolClass extends AbstractIdEntity<Long> implements Serializable 
                 ", subjects=" + subjects +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SchoolClass that = (SchoolClass) o;
+
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (pupils != null ? !pupils.equals(that.pupils) : that.pupils != null) return false;
+        if (school != null ? !school.equals(that.school) : that.school != null) return false;
+        return subjects != null ? subjects.equals(that.subjects) : that.subjects == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (pupils != null ? pupils.hashCode() : 0);
+        result = 31 * result + (school != null ? school.hashCode() : 0);
+        result = 31 * result + (subjects != null ? subjects.hashCode() : 0);
+        return result;
+    }
 }

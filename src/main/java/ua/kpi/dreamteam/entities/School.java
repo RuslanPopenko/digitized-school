@@ -65,4 +65,27 @@ public class School extends AbstractIdEntity<Long> implements Serializable {
                 ", schoolClasses=" + schoolClasses +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        School school = (School) o;
+
+        if (name != null ? !name.equals(school.name) : school.name != null) return false;
+        if (type != null ? !type.equals(school.type) : school.type != null) return false;
+        if (pupils != null ? !pupils.equals(school.pupils) : school.pupils != null) return false;
+        return schoolClasses != null ? schoolClasses.equals(school.schoolClasses) : school.schoolClasses == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (pupils != null ? pupils.hashCode() : 0);
+        result = 31 * result + (schoolClasses != null ? schoolClasses.hashCode() : 0);
+        return result;
+    }
 }

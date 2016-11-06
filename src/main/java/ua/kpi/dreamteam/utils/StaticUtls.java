@@ -1,5 +1,8 @@
 package ua.kpi.dreamteam.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import org.apache.commons.beanutils.BeanUtilsBean;
 
 import java.lang.reflect.InvocationTargetException;
@@ -33,6 +36,12 @@ public class StaticUtls {
 
     public static String deleteSuffixOptional(String str, String sfx) {
         return str.endsWith(sfx) ? str.substring(0, str.indexOf(sfx)) : str;
+    }
+
+    public static String objToJsonString(Object obj) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+        return mapper.writeValueAsString(obj);
     }
 
 }

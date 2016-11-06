@@ -30,14 +30,14 @@ public abstract class AbstractRestController<T extends JpaEntity<ID>, ID extends
 
     // Getting entity by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Object get(@PathVariable("id") ID id, HttpServletResponse response, WebRequest webRequest) throws Exception {
+    public @ResponseBody Object get(@PathVariable("id") ID id) throws Exception {
         T entity = service.find(id);
         return entity;
     }
 
     //Getting list of entities
     @RequestMapping(method = RequestMethod.GET)
-    public Object getAll(WebRequest webRequest, HttpServletResponse response, Model model) throws Exception {
+    public @ResponseBody Object getAll(WebRequest webRequest, HttpServletResponse response, Model model) throws Exception {
         List<T> result = service.findAll();
         return result;
     }

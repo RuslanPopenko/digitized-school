@@ -73,4 +73,28 @@ public class Teacher extends AbstractIdEntity<Long> implements Serializable {
                 ", subjects=" + subjects +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Teacher teacher = (Teacher) o;
+
+        if (person != null ? !person.equals(teacher.person) : teacher.person != null) return false;
+        if (schools != null ? !schools.equals(teacher.schools) : teacher.schools != null) return false;
+        if (schoolClasses != null ? !schoolClasses.equals(teacher.schoolClasses) : teacher.schoolClasses != null)
+            return false;
+        return subjects != null ? subjects.equals(teacher.subjects) : teacher.subjects == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = person != null ? person.hashCode() : 0;
+        result = 31 * result + (schools != null ? schools.hashCode() : 0);
+        result = 31 * result + (schoolClasses != null ? schoolClasses.hashCode() : 0);
+        result = 31 * result + (subjects != null ? subjects.hashCode() : 0);
+        return result;
+    }
 }
