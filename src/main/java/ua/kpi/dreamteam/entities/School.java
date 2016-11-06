@@ -12,26 +12,15 @@ import java.util.Set;
  */
 @Entity
 public class School extends AbstractIdEntity<Long> implements Serializable {
-
     @Column
     private String name;
 
     @Column
     private String type;
 
-    @Column
-    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "pupils_form_id")
-    @JsonIgnoreProperties(value = "pupils")
-    private Set<Pupil> pupil;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "school")
+    private Set<Pupil> pupils;
 
-    @Column
-    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "teachers_form_id")
-    @JsonIgnoreProperties(value = "teachers")
-    private Set<Teacher> teachers;
-
-    @Column
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "school")
     private Set<SchoolClass> schoolClasses;
 
@@ -52,19 +41,11 @@ public class School extends AbstractIdEntity<Long> implements Serializable {
     }
 
     public Set<Pupil> getPupil() {
-        return pupil;
+        return pupils;
     }
 
-    public void setPupil(Set<Pupil> pupil) {
-        this.pupil = pupil;
-    }
-
-    public Set<Teacher> getTeachers() {
-        return teachers;
-    }
-
-    public void setTeachers(Set<Teacher> teachers) {
-        this.teachers = teachers;
+    public void setPupil(Set<Pupil> pupils) {
+        this.pupils = pupils;
     }
 
     public Set<SchoolClass> getSchoolClasses() {
@@ -80,8 +61,7 @@ public class School extends AbstractIdEntity<Long> implements Serializable {
         return "School{" +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", pupil=" + pupil +
-                ", teachers=" + teachers +
+                ", pupils=" + pupils +
                 ", schoolClasses=" + schoolClasses +
                 '}';
     }

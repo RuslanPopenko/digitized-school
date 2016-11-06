@@ -1,11 +1,9 @@
 package ua.kpi.dreamteam.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ua.kpi.dreamteam.entities.superclasses.AbstractIdEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -17,20 +15,18 @@ public class SchoolClass extends AbstractIdEntity<Long> implements Serializable 
     @Column
     private String name;
 
-    @Column
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "schoolclasses")
-    private Set<Pupil> pupil;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "schoolClass")
+    private Set<Pupil> pupils;
 
-    @Column
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "schoolclasses")
-    private Set<Teacher> teachers;
-
-    @Column
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "schoolclasses")
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="school_id")
+    @JsonIgnoreProperties(value = "schoolClasses")
     private School school;
 
-    @Column
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "schoolclasses")
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "schoolClass_subject_cross",
+            joinColumns = @JoinColumn(name = "schoolClass_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private Set<Subject> subjects;
 
     public String getName() {
@@ -41,20 +37,12 @@ public class SchoolClass extends AbstractIdEntity<Long> implements Serializable 
         this.name = name;
     }
 
-    public Set<Pupil> getPupil() {
-        return pupil;
+    public Set<Pupil> getPupils() {
+        return pupils;
     }
 
-    public void setPupil(Set<Pupil> pupil) {
-        this.pupil = pupil;
-    }
-
-    public Set<Teacher> getTeachers() {
-        return teachers;
-    }
-
-    public void setTeachers(Set<Teacher> teachers) {
-        this.teachers = teachers;
+    public void setPupils(Set<Pupil> pupils) {
+        this.pupils = pupils;
     }
 
     public School getSchool() {
@@ -77,8 +65,7 @@ public class SchoolClass extends AbstractIdEntity<Long> implements Serializable 
     public String toString() {
         return "SchoolClass{" +
                 "name='" + name + '\'' +
-                ", pupil=" + pupil +
-                ", teachers=" + teachers +
+                ", pupils=" + pupils +
                 ", school=" + school +
                 ", subjects=" + subjects +
                 '}';

@@ -2,10 +2,7 @@ package ua.kpi.dreamteam.entities;
 
 import ua.kpi.dreamteam.entities.superclasses.AbstractIdEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -17,16 +14,22 @@ public class Teacher extends AbstractIdEntity<Long> implements Serializable {
     @Column
     private Person person;
 
-    @Column
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "teachers")
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "teacher_school_cross",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "school_id"))
     private Set<School> schools;
 
-    @Column
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "teachers")
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "teacher_schoolClass_cross",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "schoolClass_id"))
     private Set<SchoolClass> schoolClasses;
 
-    @Column
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "teachers")
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "teacher_subject_cross",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private Set<Subject> subjects;
 
     public Person getPerson() {

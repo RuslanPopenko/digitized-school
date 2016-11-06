@@ -1,11 +1,9 @@
 package ua.kpi.dreamteam.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ua.kpi.dreamteam.entities.superclasses.AbstractIdEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -17,14 +15,20 @@ public class Pupil extends AbstractIdEntity<Long> implements Serializable {
     @Column
     private Person person;
 
-    @Column
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="school_id")
+    @JsonIgnoreProperties(value = "pupils")
     private School school;
 
-    @Column
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="schoolClass_id")
+    @JsonIgnoreProperties(value = "pupils")
     private SchoolClass schoolClass;
 
-    @Column
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pupils")
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinTable(name = "pupil_subject_cross",
+            joinColumns = @JoinColumn(name = "pupil_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private Set<Subject> subjects;
 
     public Person getPerson() {
