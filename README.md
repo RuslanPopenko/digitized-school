@@ -2,6 +2,7 @@ Digitized schools
 =================
 
 Prerequisites
+-------------
 
     * Java Runtime Environment (version 1.8.0  or greater)
     * Maven 3.0
@@ -15,13 +16,9 @@ In order to run this project, you need
 
 2. Input following commands
 
-.. code-block:: shell
-
     git clone https://github.com/RuslanPopenko/digitized-school.git
 
 3. Create new empty schema called 'db_digitilized_school' on MySQLServer
-
-.. code-block:: sql
 
     CREATE SCHEMA `db_digitilized_school`;
 
@@ -29,13 +26,9 @@ In order to run this project, you need
 
 5. Open digitized-school directory and execute following code in a shell
 
-.. code-block:: shell
-
     mvn clean package
 
 6. Move to target directory and run jar file
-
-.. code-block:: shell
 
     cd target
     java -jar digitized-school-1.0.jar
