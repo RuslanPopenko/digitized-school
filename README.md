@@ -31,4 +31,5 @@ In order to run this project, you need
 6. Move to target directory and run jar file
 
     cd target
+
     java -jar digitized-school-1.0.jar
