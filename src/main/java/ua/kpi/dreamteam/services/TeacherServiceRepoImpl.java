@@ -8,5 +8,6 @@ import ua.kpi.dreamteam.services.superclasses.AbstractService;
 /**
  * Created by Макс on 03.11.2016.
  */
+@Service
 public class TeacherServiceRepoImpl extends AbstractService<Teacher, Long, TeacherRepository> implements TeacherService {
 }
