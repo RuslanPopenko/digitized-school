@@ -31,4 +31,8 @@ public class StaticUtls {
         return isCopied[0];
     }
 
+    public static String deleteSuffixOptional(String str, String sfx) {
+        return str.endsWith(sfx) ? str.substring(0, str.indexOf(sfx)) : str;
+    }
+
 }
