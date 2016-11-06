@@ -25,13 +25,15 @@ In order to run this project, you need
 
     CREATE SCHEMA `db_digitilized_school`;
 
-4. Open digitized-school directory and execute following code in a shell
+4. In application.properties (src/resources) change database username and password
+
+5. Open digitized-school directory and execute following code in a shell
 
 .. code-block:: shell
 
     mvn clean package
 
-5. Move to target directory and run jar file
+6. Move to target directory and run jar file
 
 .. code-block:: shell
 
