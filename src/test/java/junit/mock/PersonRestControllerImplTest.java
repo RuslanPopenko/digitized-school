@@ -7,9 +7,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import ua.kpi.dreamteam.entities.Person;
 import ua.kpi.dreamteam.restcontrollers.PersonRestControllerImpl;
 import ua.kpi.dreamteam.services.PersonService;
+import ua.kpi.dreamteam.utils.StaticUtls;
 
 import static org.mockito.BDDMockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -33,6 +35,7 @@ public class PersonRestControllerImplTest {
     @Before
     public void beforeTestGetPerson() throws Exception {
         MockitoAnnotations.initMocks(this);
+        mvc = MockMvcBuilders.standaloneSetup(personRestController).build();
         person = new Person();
         person.setId(1l);
         person.setFirstName("John");
@@ -47,9 +50,9 @@ public class PersonRestControllerImplTest {
         given(personServiceMock.find(person.getId()))
                 .willReturn(person);
 
-        mvc.perform(get("/api/persons/{id}", person.getId()).accept(MediaType.APPLICATION_JSON_UTF8))
+        mvc.perform(get("/api/persons/{id}", person.getId()).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(""));
+                .andExpect(content().json(StaticUtls.objToJsonString(person)));
     }
 
 }

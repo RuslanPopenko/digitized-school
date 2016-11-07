@@ -40,7 +40,6 @@ public class StaticUtls {
 
     public static String objToJsonString(Object obj) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
         return mapper.writeValueAsString(obj);
     }
 
