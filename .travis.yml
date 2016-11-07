@@ -10,7 +10,8 @@ script:
 
 deploy:
   provider: releases
-  api_key: "git: https://github.com/ on DESKTOP-H33KTL0 at 18-Вер-2016 "
+  user: "Max-Morozov"
+  password: "newpassword123"
   file: "digitized-school-1.0.jar"
   skip_cleanup: true
   on:
