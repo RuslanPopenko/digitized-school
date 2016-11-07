@@ -4,9 +4,9 @@ jdk:
 install: mvn install -DskipTests=true -Dgpg.skip=true -B -V
 script:
   mvn clean package test
-  after_success:
-    - chmod a+x deploy.sh
-    - ./deploy.sh
+after_success:
+  - chmod a+x deploy.sh
+  - ./deploy.sh
 branches:
   only:
     - master
