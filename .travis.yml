@@ -3,3 +3,8 @@ jdk:
   - oraclejdk8
 install: mvn install -DskipTests=true -Dgpg.skip=true
 script: mvn clean package
+
+notifications:
+  slack:
+    rooms:
+      - kpi-integration-2016:zvKvQcOYpf5YKTKXeIyl9Tzs#dreamteam
