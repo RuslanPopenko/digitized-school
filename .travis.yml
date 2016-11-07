@@ -12,7 +12,7 @@ deploy:
   provider: releases
   user: "Max-Morozov"
   password: "newpassword123"
-  file: "digitized-school-1.0.jar"
+  file: "/target/digitized-school-1.0.jar"
   skip_cleanup: true
   on:
     tags: true
