@@ -3,7 +3,7 @@ jdk:
   - oraclejdk8
 install: mvn install -DskipTests=true -Dgpg.skip=true -B -V
 script:
-  mvn clean package test
+  mvn clean test package
 after_success:
   - chmod a+x deploy.sh
   - ./deploy.sh
