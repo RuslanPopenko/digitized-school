@@ -102,12 +102,12 @@ public class TestTeacher {
     }
 
     @Test
-    public void testSchool(){
+    public void testSchools(){
         assertNotEquals(Sveta.getSchools(), Zhenya.getSchools());
     }
 
     @Test
-    public void testSchoolClass(){
+    public void testSchoolClasses(){
         assertEquals(Sveta.getSchoolClasses(), Zhenya.getSchoolClasses());
     }
 
