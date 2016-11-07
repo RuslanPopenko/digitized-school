@@ -1,12 +1,21 @@
 language: java
+
 jdk:
   - oraclejdk8
+
 install: mvn install -DskipTests=true -Dgpg.skip=true -B -V
+
 script:
   mvn clean test package
-after_success:
-  - chmod a+x deploy.sh
-  - ./deploy.sh
+
+deploy:
+  provider: releases
+  api_key: "git: https://github.com/ on DESKTOP-H33KTL0 at 18-Вер-2016 "
+  file: "digitized-school-1.0.jar"
+  skip_cleanup: true
+  on:
+    tags: true
+
 branches:
   only:
     - master
