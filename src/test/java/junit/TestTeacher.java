@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
  * Created by Vladislav on 07.11.16.
  */
 public class TestTeacher {
-    private static Teacher Sveta, Zhenya;
+    private static Teacher Svetlana, Zhenya;
     private static Person Tonya, Louie;
     private static School NewSchool, OldSchool,BestSchool;
     private static Subject Chemistry, PhysicalCulture;
@@ -80,11 +80,11 @@ public class TestTeacher {
 
         //----------------------------------
 
-        Sveta = mock(Teacher.class);
-        when(Sveta.getPerson()).thenReturn(Tonya);
-        when(Sveta.getSchools()).thenReturn(schools1);
-        when(Sveta.getSchoolClasses()).thenReturn(classes);
-        when(Sveta.getSubjects()).thenReturn(subjects);
+        Svetlana = mock(Teacher.class);
+        when(Svetlana.getPerson()).thenReturn(Tonya);
+        when(Svetlana.getSchools()).thenReturn(schools1);
+        when(Svetlana.getSchoolClasses()).thenReturn(classes);
+        when(Svetlana.getSubjects()).thenReturn(subjects);
 
 
         Zhenya = mock(Teacher.class);
@@ -98,22 +98,22 @@ public class TestTeacher {
 
     @Test
     public void testPerson(){
-        assertNotEquals(Sveta.getPerson(), Zhenya.getPerson());
+        assertNotEquals(Svetlana.getPerson(), Zhenya.getPerson());
     }
 
     @Test
     public void testSchools(){
-        assertNotEquals(Sveta.getSchools(), Zhenya.getSchools());
+        assertNotEquals(Svetlana.getSchools(), Zhenya.getSchools());
     }
 
     @Test
     public void testSchoolClasses(){
-        assertEquals(Sveta.getSchoolClasses(), Zhenya.getSchoolClasses());
+        assertEquals(Svetlana.getSchoolClasses(), Zhenya.getSchoolClasses());
     }
 
     @Test
     public void testSubjects(){
-        assertEquals(Sveta.getSubjects(), Zhenya.getSubjects());
+        assertEquals(Svetlana.getSubjects(), Zhenya.getSubjects());
     }
 
 }
