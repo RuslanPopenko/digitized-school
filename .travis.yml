@@ -4,9 +4,9 @@ jdk:
 install: mvn install -DskipTests=true -Dgpg.skip=true -B -V
 script:
   mvn clean package test
-  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./travis/run_on_pull_requests; fi'
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis/run_on_non_pull_requests; fi'
-
+  after_success:
+    - chmod a+x deploy.sh
+    - ./deploy.sh
 branches:
   only:
     - master
