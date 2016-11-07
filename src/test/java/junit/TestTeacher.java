@@ -1,6 +1,6 @@
 package junit;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import ua.kpi.dreamteam.entities.*;
 
@@ -22,7 +22,7 @@ public class TestTeacher {
     private static Subject Chemistry, PhysicalCulture;
     private static SchoolClass Room1408, Room228;
 
-    @BeforeClass
+    @Before
     public static void prepareObjects(){
 
         Tonya = new Person();

@@ -1,6 +1,6 @@
 package junit;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import ua.kpi.dreamteam.entities.Person;
 
@@ -15,7 +15,7 @@ public class TestPerson {
     private static Person someone, women, boy;
     private static Person guy, friend, brother;
 
-    @BeforeClass
+    @Before
     public static void prepareObjects() {
         someone = new Person();
         someone.setAge(45);
