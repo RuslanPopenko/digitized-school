@@ -28,7 +28,7 @@ public class DigitizedSchool {
         logger.info("entered application");
         SpringApplication.run(DigitizedSchool.class, args);
         Properties gitProperties = new Properties();
-        gitProperties.load(resourceLoader.getResource("classpath:git.gitProperties").getInputStream());
+        gitProperties.load(resourceLoader.getResource("classpath:git.properties").getInputStream());
         logger.info("Git describe: " + StaticUtls.deleteSuffixOptional(gitProperties.getProperty("git.commit.id.describe"), "-dirty"));
     }
 }

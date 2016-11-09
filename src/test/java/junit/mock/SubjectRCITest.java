@@ -28,7 +28,6 @@ public class SubjectRCITest {
 
     @InjectMocks
     private SubjectRestControllerImpl subjectRestController;
-
     private Subject subject;
 
     @Before
@@ -42,11 +41,9 @@ public class SubjectRCITest {
 
     @Test
     public void getSubjectTest() throws Exception {
-
-        given(subjectServiceMock.find(subject.getId()))
-                .willReturn(subject);
-
-        mvc.perform(get("/api/subjects/{id}", subject.getId()).accept(MediaType.APPLICATION_JSON))
+        given(subjectServiceMock.find(subject.getId())).willReturn(subject);
+        mvc.perform(get("/api/subjects/{id}", subject.getId())
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(StaticUtls.objToJsonString(subject)));
     }
