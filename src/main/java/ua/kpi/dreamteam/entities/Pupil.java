@@ -12,7 +12,8 @@ import java.util.Set;
  */
 @Entity
 public class Pupil extends AbstractIdEntity<Long> implements Serializable {
-    @Column
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="person_id")
     private Person person;
 
     @ManyToOne(fetch=FetchType.EAGER)
