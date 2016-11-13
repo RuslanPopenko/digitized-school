@@ -41,8 +41,4 @@ public class Subject extends AbstractIdEntity<Long> implements Serializable{
 
     }
 
-    @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
-    }
 }

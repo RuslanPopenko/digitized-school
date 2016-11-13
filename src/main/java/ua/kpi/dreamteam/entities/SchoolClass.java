@@ -20,7 +20,6 @@ public class SchoolClass extends AbstractIdEntity<Long> implements Serializable 
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="school_id")
-    @JsonIgnoreProperties(value = "schoolClasses")
     private School school;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
@@ -85,12 +84,4 @@ public class SchoolClass extends AbstractIdEntity<Long> implements Serializable 
 
     }
 
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (pupils != null ? pupils.hashCode() : 0);
-        result = 31 * result + (school != null ? school.hashCode() : 0);
-        result = 31 * result + (subjects != null ? subjects.hashCode() : 0);
-        return result;
-    }
 }

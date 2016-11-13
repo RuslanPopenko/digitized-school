@@ -2,6 +2,9 @@ package ua.kpi.dreamteam.entities.superclasses;
 
 ;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -9,6 +12,7 @@ import java.io.Serializable;
  * Created by ruslan on 23.10.16.
  */
 @MappedSuperclass
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@Id")
 public abstract class AbstractIdEntity<ID extends Serializable> implements JpaEntity<ID>, Serializable {
 
     @Id

@@ -1,5 +1,6 @@
 package ua.kpi.dreamteam.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ua.kpi.dreamteam.entities.superclasses.AbstractIdEntity;
 
@@ -18,12 +19,10 @@ public class Pupil extends AbstractIdEntity<Long> implements Serializable {
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="school_id")
-    @JsonIgnoreProperties(value = "pupils")
     private School school;
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="schoolClass_id")
-    @JsonIgnoreProperties(value = "pupils")
     private SchoolClass schoolClass;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
@@ -88,12 +87,4 @@ public class Pupil extends AbstractIdEntity<Long> implements Serializable {
 
     }
 
-    @Override
-    public int hashCode() {
-        int result = person != null ? person.hashCode() : 0;
-        result = 31 * result + (school != null ? school.hashCode() : 0);
-        result = 31 * result + (schoolClass != null ? schoolClass.hashCode() : 0);
-        result = 31 * result + (subjects != null ? subjects.hashCode() : 0);
-        return result;
-    }
 }

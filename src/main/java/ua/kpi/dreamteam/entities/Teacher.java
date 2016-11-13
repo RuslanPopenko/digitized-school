@@ -90,12 +90,4 @@ public class Teacher extends AbstractIdEntity<Long> implements Serializable {
 
     }
 
-    @Override
-    public int hashCode() {
-        int result = person != null ? person.hashCode() : 0;
-        result = 31 * result + (schools != null ? schools.hashCode() : 0);
-        result = 31 * result + (schoolClasses != null ? schoolClasses.hashCode() : 0);
-        result = 31 * result + (subjects != null ? subjects.hashCode() : 0);
-        return result;
-    }
 }

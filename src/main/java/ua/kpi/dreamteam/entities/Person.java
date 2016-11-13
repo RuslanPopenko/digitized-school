@@ -86,13 +86,4 @@ public class Person extends AbstractIdEntity<Long> implements Serializable {
         return sex != null ? sex.equals(person.sex) : person.sex == null;
 
     }
-
-    @Override
-    public int hashCode() {
-        int result = firstName != null ? firstName.hashCode() : 0;
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (age != null ? age.hashCode() : 0);
-        result = 31 * result + (sex != null ? sex.hashCode() : 0);
-        return result;
-    }
 }
