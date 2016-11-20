@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/js/script.js"></script>
+    <title>Person</title>
 </head>
 <body>
-Person
+    <h1>Person (create)</h1>
+    <label for="firstName">First name</label>
+    <input id="firstName" class="person">
+    <br>
+    <br>
+    <label for="lastName">Last name</label>
+    <input id="lastName" class="person">
+    <br>
+    <br>
+    <label>Age</label>
+    <input id="age" class="person" type="number" min="10" step="1">
+    <br>
+    <br>
+    <label>Sex</label>
+    <select id="sex" class="person">
+        <option value="true">Man</option>
+        <option value="false">Woman</option>
+    </select>
+    <br>
+    <br>
+    <button onclick="createPerson();">Create person</button>
+    <br>
+    <br>
+    <div id="response"></div>
 </body>
 </html>
