@@ -31,5 +31,60 @@
     <br>
     <br>
     <div id="response"></div>
+
+    <h1>Person (update)</h1>
+    <label>Id</label>
+    <input id="id" class="person" type="number" min="1" step="1">
+    <br>
+    <br>
+    <label for="firstName">First name</label>
+    <input id="firstName" class="person">
+    <br>
+    <br>
+    <label for="lastName">Last name</label>
+    <input id="lastName" class="person">
+    <br>
+    <br>
+    <label>Age</label>
+    <input id="age" class="person" type="number" min="10" step="1">
+    <br>
+    <br>
+    <label>Sex</label>
+    <select id="sex" class="person">
+        <option value="true">Man</option>
+        <option value="false">Woman</option>
+    </select>
+    <br>
+    <br>
+    <button onclick=updatePerson();">Update person</button>
+    <br>
+    <br>
+    <div id="response"></div>
+
+    <h1>Person (get)</h1>
+    <label>Id</label>
+    <input id="id" class="person" type="number" min="1" step="1">
+    <br>
+    <br>
+    <button onclick="getPerson();">Get person</button>
+    <br>
+    <br>
+    <div id="response"></div>
+
+    <h1>Person (getAll)</h1>
+    <button onclick="getAllPersons();">Get all persons</button>
+    <br>
+    <br>
+    <div id="response"></div>
+
+    <h1>Person (delete)</h1>
+    <label>Id</label>
+    <input id="id" class="person" type="number" min="1" step="1">
+    <br>
+    <br>
+    <button onclick="deletePerson();">Delete person</button>
+    <br>
+    <br>
+    <div id="response"></div>
 </body>
 </html>

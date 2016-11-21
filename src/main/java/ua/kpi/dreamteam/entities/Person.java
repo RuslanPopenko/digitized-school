@@ -54,14 +54,6 @@ public class Person extends AbstractIdEntity<Long> implements Serializable {
     public void setSex(Boolean sex) {
         this.sex = sex;
     }
-    
-    public boolean isBoy() {
-        if (this.getSex() == null)
-            throw new IllegalStateException();
-    	if (this.getSex() && this.getAge() < 12)
-    		return true;
-    	return false;
-    }
 
     @Override
     public String toString() {
