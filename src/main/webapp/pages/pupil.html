@@ -7,7 +7,7 @@
     <title>Pupil</title>
 </head>
 <body>
-    <h1>Pupil (create)</h1>
+    <h2>Pupil (create)</h2>
     <label>Person's id</label>
     <input id="person_id" class="pupil" type="number" min="1" step="1">
     <br>
@@ -20,9 +20,65 @@
     <input id="schoolClass_id" class="pupil" type="number" min="1" step="1">
     <br>
     <br>
+    <label>Subject's ids</label>
+    <input id="subject_ids" class="pupil">
+    <br>
+    <br>
     <button onclick="createPupil();">Create pupil</button>
     <br>
     <br>
     <div id="responseCreate"></div>
+
+    <h2>Pupil (get)</h2>
+    <label>Id</label>
+    <input id="id" class="pupil" type="number" min="1" step="1">
+    <br>
+    <br>
+    <button onclick="getPupil();">Get pupil</button>
+    <br>
+    <br>
+    <div id="responseGet"></div>
+
+    <h2>Pupil (getAll)</h2>
+    <button onclick="getAllPupils();">Get all pupils</button>
+    <br>
+    <br>
+    <div id="responseGetAll"></div>
+
+    <h2>Pupil (update)</h2>
+    <label>Pupil's id</label>
+    <input id="pupil_idU" class="pupil" type="number" min="1" step="1">
+    <br>
+    <br>
+    <label>Person's id</label>
+    <input id="person_idU" class="pupil" type="number" min="1" step="1">
+    <br>
+    <br>
+    <label>School's id</label>
+    <input id="school_idU" class="pupil" type="number" min="1" step="1">
+    <br>
+    <br>
+    <label>SchoolClass's id</label>
+    <input id="schoolClass_idU" class="pupil" type="number" min="1" step="1">
+    <br>
+    <br>
+    <label>Subject's ids</label>
+    <input id="subject_idsU" class="pupil">
+    <br>
+    <br>
+    <button onclick="updatePupil();">Update pupil</button>
+    <br>
+    <br>
+    <div id="responseUpdate"></div>
+
+    <h2>Pupil (delete)</h2>
+    <label>Id</label>
+    <input id="idD" class="pupil" type="number" min="1" step="1">
+    <br>
+    <br>
+    <button onclick="deletePupil();">Delete pupil</button>
+    <br>
+    <br>
+    <div id="responseDelete"></div>
 </body>
 </html>

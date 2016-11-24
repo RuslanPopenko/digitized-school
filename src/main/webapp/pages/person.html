@@ -7,7 +7,7 @@
     <title>Person</title>
 </head>
 <body>
-    <h1>Person (create)</h1>
+    <h2>Person (create)</h2>
     <label for="firstName">First name</label>
     <input id="firstName" class="person">
     <br>
@@ -32,25 +32,41 @@
     <br>
     <div id="responseCreate"></div>
 
-    <h1>Person (update)</h1>
+    <h2>Person (get)</h2>
     <label>Id</label>
     <input id="id" class="person" type="number" min="1" step="1">
     <br>
     <br>
-    <label for="firstName">First name</label>
-    <input id="firstName" class="person">
+    <button onclick="getPerson();">Get person</button>
     <br>
     <br>
-    <label for="lastName">Last name</label>
-    <input id="lastName" class="person">
+    <div id="responseGet"></div>
+
+    <h2>Person (getAll)</h2>
+    <button onclick="getAllPersons();">Get all persons</button>
+    <br>
+    <br>
+    <div id="responseGetAll"></div>
+
+    <h2>Person (update)</h2>
+    <label>Id</label>
+    <input id="idU" class="person" type="number" min="1" step="1">
+    <br>
+    <br>
+    <label for="firstNameU">First name</label>
+    <input id="firstNameU" class="person">
+    <br>
+    <br>
+    <label for="lastNameU">Last name</label>
+    <input id="lastNameU" class="person">
     <br>
     <br>
     <label>Age</label>
-    <input id="age" class="person" type="number" min="10" step="1">
+    <input id="ageU" class="person" type="number" min="10" step="1">
     <br>
     <br>
     <label>Sex</label>
-    <select id="sex" class="person">
+    <select id="sexU" class="person">
         <option value="true">Man</option>
         <option value="false">Woman</option>
     </select>
@@ -61,25 +77,9 @@
     <br>
     <div id="responseUpdate"></div>
 
-    <h1>Person (get)</h1>
+    <h2>Person (delete)</h2>
     <label>Id</label>
-    <input id="id" class="person" type="number" min="1" step="1">
-    <br>
-    <br>
-    <button onclick="getPerson();">Get person</button>
-    <br>
-    <br>
-    <div id="responseGet"></div>
-
-    <h1>Person (getAll)</h1>
-    <button onclick="getAllPersons();">Get all persons</button>
-    <br>
-    <br>
-    <div id="responseGetAll"></div>
-
-    <h1>Person (delete)</h1>
-    <label>Id</label>
-    <input id="id" class="person" type="number" min="1" step="1">
+    <input id="idD" class="person" type="number" min="1" step="1">
     <br>
     <br>
     <button onclick="deletePerson();">Delete person</button>
