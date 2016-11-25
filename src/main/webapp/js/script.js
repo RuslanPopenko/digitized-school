@@ -176,6 +176,18 @@ function deletePupil() {
     });
 }
 
+function getRequestRecursive(url, ids, accumulator, callback) {
+    sendAjax(url + ids.pop(), 'GET', null, function (data) {
+        accumulator.push(data);
+        if (ids.length > 0) {
+            getRequestRecursive(url, ids, accumulator, callback);
+        } else {
+            callback();
+        }
+    });
+
+}
+
 function sendAjax(url, method, data, callback) {
     $.ajax({
         url: url,
