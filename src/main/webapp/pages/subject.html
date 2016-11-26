@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/js/script.js"></script>
+    <title>Subject</title>
+</head>
+<body>
+    <h2>Subject (create)</h2>
+    <label for="name">Name</label>
+    <input id="name" class="subject">
+    <br>
+    <br>
+    <button onclick="createSubject();">Create subject</button>
+    <br>
+    <br>
+    <div id="responseCreate"></div>
+
+    <h2>Subject (get)</h2>
+    <label>Id</label>
+    <input id="id" class="subject" type="number" min="1" step="1">
+    <br>
+    <br>
+    <button onclick="getSubject();">Get subject</button>
+    <br>
+    <br>
+    <div id="responseGet"></div>
+
+    <h2>Subject (getAll)</h2>
+    <button onclick="getAllSubjects();">Get all subjects</button>
+    <br>
+    <br>
+    <div id="responseGetAll"></div>
+
+    <h2>Subject (update)</h2>
+    <label>Id</label>
+    <input id="idU" class="subject" type="number" min="1" step="1">
+    <br>
+    <br>
+    <label for="nameU">Name</label>
+    <input id="nameU" class="subject">
+    <br>
+    <br>
+    <button onclick="updateSubject();">Update subject</button>
+    <br>
+    <br>
+    <div id="responseUpdate"></div>
+
+    <h2>Subject (delete)</h2>
+    <label>Id</label>
+    <input id="idD" class="subject" type="number" min="1" step="1">
+    <br>
+    <br>
+    <button onclick="deleteSubject();">Delete subject</button>
+    <br>
+    <br>
+    <div id="responseDelete"></div>
+</body>
+</html>
