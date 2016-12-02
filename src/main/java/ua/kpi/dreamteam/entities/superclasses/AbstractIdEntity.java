@@ -12,7 +12,7 @@ import java.io.Serializable;
  * Created by ruslan on 23.10.16.
  */
 @MappedSuperclass
-@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@Id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@Id")
 public abstract class AbstractIdEntity<ID extends Serializable> implements JpaEntity<ID>, Serializable {
 
     @Id

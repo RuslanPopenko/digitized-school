@@ -1,6 +1,6 @@
 package ua.kpi.dreamteam.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import ua.kpi.dreamteam.entities.superclasses.AbstractIdEntity;
 
 import javax.persistence.*;
@@ -16,10 +16,12 @@ public class SchoolClass extends AbstractIdEntity<Long> implements Serializable 
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "schoolClass")
+    @JsonBackReference("schoolClass")
     private Set<Pupil> pupils;
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="school_id")
+    @JsonBackReference
     private School school;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
@@ -81,7 +83,5 @@ public class SchoolClass extends AbstractIdEntity<Long> implements Serializable 
         if (pupils != null ? !pupils.equals(that.pupils) : that.pupils != null) return false;
         if (school != null ? !school.equals(that.school) : that.school != null) return false;
         return subjects != null ? subjects.equals(that.subjects) : that.subjects == null;
-
     }
-
 }
