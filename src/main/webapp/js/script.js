@@ -81,7 +81,7 @@ function createPupil() {
                 var ids = str.split(',');
                 pupilData['subjects'] = [];
                 url = '/api/subjects/';
-                getRequestRecursive(url, ids, pupilData['subjects'], function(data){
+                getRequestRecursive(url, ids, pupilData['subjects'], function(data) {
                     url = '/api/pupils';
                     sendAjax(url, 'POST', pupilData, function(data) {
                         $('#responseCreate').html('Created pupil with id = ' + data.id);
@@ -97,9 +97,10 @@ function getPupil() {
 
     sendAjax(url, 'GET', null, function (data) {
         var output = 'Pupil ' + data.id + ': personId = ' + data.person.id
-            + ', schoolClassId = ' + data.schoolClass.id + ', subjectIds -';
+            + ', schoolId = ' + data.school.id
+            + ', schoolClassId = ' + data.schoolClass + ', subjectIds -';
         for (var i = 0; i < data.subjects.length; i++)
-            output = output.concat(' ' + data.subjects[i].id);
+            output = output.concat(' ' + data.subjects[i]);
         $('#responseGet').html(output);
     });
 }
@@ -110,11 +111,32 @@ function getAllPupils() {
     sendAjax(url, 'GET', null, function (data) {
         var output = '';
         for (var i = 0; i < data.length; i++) {
-            output = output.concat('Pupil ' + data[i].id + ': personId = ' + data[i].person.id
-                + ', schoolClassId = ' + data[i].schoolClass.id + ', subjectIds -');
-            for (var j = 0; j < data[i].subjects.length; j++)
-                output = output.concat(' ' + data[i].subjects[j].id);
-            output = output.concat(' | ');
+            if (i == 0) {
+                output = output.concat('Pupil ' + data[i].id
+                    + ': personId = ' + data[i].person.id
+                    + ', schoolId = ' + data[i].school.id
+                    + ', schoolClassId = ' + data[i].schoolClass + ', subjectIds -');
+                for (var j = 0; j < data[i].subjects.length; j++)
+                    output = output.concat(' ' + data[i].subjects[j]);
+                output = output.concat(' | ');
+                data.pop();
+                i--;
+            }
+            else {
+                url = '/api/pupils/';
+                var pupils = [];
+                getRequestRecursive(url, data, pupils, function(data) {
+                    for (var j = 0; j < pupils.length; j++) {
+                        output = output.concat('Pupil ' + pupils[j].id
+                            + ': personId = ' + pupils[j].person.id
+                            + ', schoolId = ' + pupils[j].school.id
+                            + ', schoolClassId = ' + pupils[j].schoolClass + ', subjectIds -');
+                        for (var k = 0; k < pupils[j].subjects.length; k++)
+                            output = output.concat(' ' + pupils[j].subjects[k]);
+                        output = output.concat(' | ');
+                    }
+                });
+            }
         }
         $('#responseGetAll').html(output);
     });
@@ -137,7 +159,7 @@ function updatePupil() {
                 var ids = str.split(',');
                 pupilData['subjects'] = [];
                 url = '/api/subjects/';
-                getRequestRecursive(url, ids, pupilData['subjects'], function(data){
+                getRequestRecursive(url, ids, pupilData['subjects'], function(data) {
                     url = '/api/pupils/'+$('#idU').val();
                     sendAjax(url, 'PUT', pupilData, function(data) {
                         $('#responseUpdate').html('Updated pupil with id = ' + data.id);
@@ -153,9 +175,10 @@ function deletePupil() {
 
     sendAjax(url, 'DELETE', null, function (data) {
         var output = 'Deleted pupil ' + data.id + ': personId = ' + data.person.id
-            + ', schoolClassId = ' + data.schoolClass.id + ', subjectIds -';
+            + ', schoolId = ' + data.school.id
+            + ', schoolClassId = ' + data.schoolClass + ', subjectIds -';
         for (var i = 0; i < data.subjects.length; i++)
-            output = output.concat(' ' + data.subjects[i].id);
+            output = output.concat(' ' + data.subjects[i]);
         $('#responseDelete').html(output);
     });
 }
@@ -217,15 +240,15 @@ function createSchool() {
     schoolData['type'] = $('#type').val();
     var str = $('#pupil_ids').val();
     var ids = str.split(',');
-    schoolData['pupil'] = [];
+    schoolData['pupils'] = [];
     var url = '/api/pupils/';
 
-    getRequestRecursive(url, ids, schoolData['pupil'], function(data){
+    getRequestRecursive(url, ids, schoolData['pupils'], function(data) {
         str = $('#schoolclass_ids').val();
         ids = str.split(',');
-        schoolData['schoolClass'] = [];
+        schoolData['schoolClasses'] = [];
         url = '/api/schoolclasses/';
-        getRequestRecursive(url, ids, schoolData['schoolClass'], function(data){
+        getRequestRecursive(url, ids, schoolData['schoolClasses'], function(data) {
             url = '/api/schools';
             sendAjax(url, 'POST', schoolData, function(data) {
                 $('#responseCreate').html('Created school with id = ' + data.id);
@@ -240,8 +263,11 @@ function getSchool() {
     sendAjax(url, 'GET', null, function (data) {
         var output = 'School ' + data.id + ': name - ' + data.name
             + ', type - ' + data.type + ', pupilIds -';
-        for (var i = 0; i < data.pupil.length; i++)
-            output = output.concat(' ' + data.pupil[i].id);
+        for (var i = 0; i < data.pupils.length; i++)
+            output = output.concat(' ' + data.pupils[i]);
+        output = output.concat(', schoolClassIds -');
+        for (var i = 0; i < data.schoolClasses.length; i++)
+            output = output.concat(' ' + data.schoolClasses[i].id);
         $('#responseGet').html(output);
     });
 }
@@ -254,8 +280,11 @@ function getAllSchools() {
         for (var i = 0; i < data.length; i++) {
             output = output.concat('School ' + data[i].id + ': name - ' + data[i].name
                 + ', type - ' + data[i].type + ', pupilIds -');
-            for (var j = 0; j < data[i].pupil.length; j++)
-                output = output.concat(' ' + data[i].pupil[j].id);
+            for (var j = 0; j < data[i].pupils.length; j++)
+                output = output.concat(' ' + data[i].pupils[j]);
+            output = output.concat(', schoolClassIds -');
+            for (var j = 0; j < data[i].schoolClasses.length; j++)
+                output = output.concat(' ' + data[i].schoolClasses[j].id);
             output = output.concat(' | ');
         }
         $('#responseGetAll').html(output);
@@ -268,15 +297,15 @@ function updateSchool() {
     schoolData['type'] = $('#typeU').val();
     var str = $('#pupil_idsU').val();
     var ids = str.split(',');
-    schoolData['pupil'] = [];
+    schoolData['pupils'] = [];
     var url = '/api/pupils/';
 
-    getRequestRecursive(url, ids, schoolData['pupil'], function(data){
+    getRequestRecursive(url, ids, schoolData['pupils'], function(data) {
         str = $('#schoolclass_idsU').val();
         ids = str.split(',');
-        schoolData['schoolClass'] = [];
+        schoolData['schoolClasses'] = [];
         url = '/api/schoolclasses/';
-        getRequestRecursive(url, ids, schoolData['schoolClass'], function(data){
+        getRequestRecursive(url, ids, schoolData['schoolClasses'], function(data) {
             url = '/api/schools/'+$('#idU').val();
             sendAjax(url, 'PUT', schoolData, function(data) {
                 $('#responseUpdate').html('Updated school with id = ' + data.id);
@@ -291,8 +320,114 @@ function deleteSchool() {
     sendAjax(url, 'DELETE', null, function (data) {
         var output = 'Deleted school ' + data.id + ': name - ' + data.name
             + ', type - ' + data.type + ', pupilIds -';
-        for (var i = 0; i < data.pupil.length; i++)
-            output = output.concat(' ' + data.pupil[i].id);
+        for (var i = 0; i < data.pupils.length; i++)
+            output = output.concat(' ' + data.pupils[i].id);
+        output = output.concat(', schoolClassIds -');
+        for (var i = 0; i < data.schoolClasses.length; i++)
+            output = output.concat(' ' + data.schoolClasses[i].id);
+        $('#responseDelete').html(output);
+    });
+}
+
+//----------------------------------------SCHOOLCLASS-----------------------------------------
+
+function createSchoolClass() {
+    var schoolClassData = {};
+    schoolClassData['name'] = $('#name').val();
+    var url = '/api/schools/'+$('#school_id').val();
+
+    sendAjax(url, 'GET', null, function (data) {
+        schoolClassData['school'] = data;
+        var str = $('#pupil_ids').val();
+        var ids = str.split(',');
+        schoolClassData['pupils'] = [];
+        url = '/api/pupils/';
+        getRequestRecursive(url, ids, schoolClassData['pupils'], function (data) {
+            str = $('#subject_ids').val();
+            ids = str.split(',');
+            schoolClassData['subjects'] = [];
+            url = '/api/subjects/';
+            getRequestRecursive(url, ids, schoolClassData['subjects'], function (data) {
+                url = '/api/schoolclasses';
+                sendAjax(url, 'POST', schoolClassData, function (data) {
+                    $('#responseCreate').html('Created schoolClass with id = ' + data.id);
+                });
+            });
+        });
+    });
+}
+
+function getSchoolClass() {
+    var url = '/api/schoolclasses/'+$('#id').val();
+
+    sendAjax(url, 'GET', null, function (data) {
+        var output = 'SchoolClass ' + data.id + ': name - ' + data.name
+            + ', schoolId = ' + data.school + ', pupilIds -';
+        for (var i = 0; i < data.pupils.length; i++)
+            output = output.concat(' ' + data.pupils[i].id);
+        output = output.concat(', subjectIds -');
+        for (var i = 0; i < data.subjects.length; i++)
+            output = output.concat(' ' + data.subjects[i]);
+        $('#responseGet').html(output);
+    });
+}
+
+function getAllSchoolClasses() {
+    var url = '/api/schoolclasses';
+
+    sendAjax(url, 'GET', null, function (data) {
+        var output = '';
+        for (var i = 0; i < data.length; i++) {
+            output = output.concat('SchoolClass ' + data.id + ': name - ' + data.name
+                + ', schoolId = ' + data.school + ', pupilIds -');
+            for (var j = 0; j < data[i].pupils.length; j++)
+                output = output.concat(' ' + data[i].pupils[j].id);
+            output = output.concat(', subjectIds -');
+            for (var j = 0; j < data[i].subjects.length; j++)
+                output = output.concat(' ' + data[i].subjects[j]);
+            output = output.concat(' | ');
+        }
+        $('#responseGetAll').html(output);
+    });
+}
+
+function updateSchoolClass() {
+    var schoolClassData = {};
+    schoolClassData['name'] = $('#nameU').val();
+    var url = '/api/schools/'+$('#school_idU').val();
+
+    sendAjax(url, 'GET', null, function (data) {
+        schoolClassData['school'] = data;
+        var str = $('#pupil_idsU').val();
+        var ids = str.split(',');
+        schoolClassData['pupils'] = [];
+        url = '/api/pupils/';
+        getRequestRecursive(url, ids, schoolClassData['pupils'], function (data) {
+            str = $('#subject_idsU').val();
+            ids = str.split(',');
+            schoolClassData['subjects'] = [];
+            url = '/api/subjects/';
+            getRequestRecursive(url, ids, schoolClassData['subjects'], function (data) {
+                url = '/api/schoolclasses/'+$('#idU').val();
+                sendAjax(url, 'PUT', schoolClassData, function (data) {
+                    $('#responseUpdate').html('Updated schoolClass with id = ' + data.id);
+                });
+            });
+        });
+    });
+}
+
+function deleteSchoolClass() {
+    var url = '/api/schoolclasses/'+$('#idD').val();
+
+    sendAjax(url, 'DELETE', null, function (data) {
+        var output = 'Deleted schoolClass ' + data.id + ': name - ' + data.name
+            + ', schoolId = ' + data.school.id + ', pupilIds -';
+        for (var i = 0; i < data.pupils.length; i++)
+            output = output.concat(' ' + data.pupils[i].id);
+        output = output.concat(', subjectIds -');
+        for (var i = 0; i < data.subjects.length; i++)
+            output = output.concat(' ' + data.subjects[i].id);
         $('#responseDelete').html(output);
     });
 }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/js/script.js"></script>
+    <title>SchoolClass</title>
+</head>
+<body>
+<h2>SchoolClass (create)</h2>
+<label for="name">Name</label>
+<input id="name" class="schoolclass">
+<br>
+<br>
+<label>School's id</label>
+<input id="school_id" class="schoolclass" type="number" min="1" step="1">
+<br>
+<br>
+<label>Pupil's ids</label>
+<input id="pupil_ids" class="schoolclass">
+<br>
+<br>
+<label>Subject's ids</label>
+<input id="subject_ids" class="schoolclass">
+<br>
+<br>
+<button onclick="createSchoolClass();">Create schoolClass</button>
+<br>
+<br>
+<div id="responseCreate"></div>
+
+<h2>SchoolClass (get)</h2>
+<label>Id</label>
+<input id="id" class="schoolclass" type="number" min="1" step="1">
+<br>
+<br>
+<button onclick="getSchoolClass();">Get schoolClass</button>
+<br>
+<br>
+<div id="responseGet"></div>
+
+<h2>SchoolClass (getAll)</h2>
+<button onclick="getAllSchoolClasses();">Get all schoolClasses</button>
+<br>
+<br>
+<div id="responseGetAll"></div>
+
+<h2>SchoolClass (update)</h2>
+<label>SchoolClass's id</label>
+<input id="idU" class="schoolclass" type="number" min="1" step="1">
+<br>
+<br>
+<label for="name">Name</label>
+<input id="name" class="schoolclass">
+<br>
+<br>
+<label>School's id</label>
+<input id="school_id" class="schoolclass" type="number" min="1" step="1">
+<br>
+<br>
+<label>Pupil's ids</label>
+<input id="pupil_ids" class="schoolclass">
+<br>
+<br>
+<label>Subject's ids</label>
+<input id="subject_ids" class="schoolclass">
+<br>
+<br>
+<button onclick="updateSchoolClass();">Update schoolClass</button>
+<br>
+<br>
+<div id="responseUpdate"></div>
+
+<h2>SchoolClass (delete)</h2>
+<label>Id</label>
+<input id="idD" class="schoolclass" type="number" min="1" step="1">
+<br>
+<br>
+<button onclick="deleteSchoolClass();">Delete schoolClass</button>
+<br>
+<br>
+<div id="responseDelete"></div>
+</body>
+</html>
