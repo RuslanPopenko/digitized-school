@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/js/script.js"></script>
+    <title>Teacher</title>
+</head>
+<body>
+    <h2>Teacher (create)</h2>
+    <label>Person's id</label>
+    <input id="person_id" class="teacher" type="number" min="1" step="1">
+    <br>
+    <br>
+    <label>Subject's ids</label>
+    <input id="subject_ids" class="teacher">
+    <br>
+    <br>
+    <label>School's ids</label>
+    <input id="school_ids" class="teacher">
+    <br>
+    <br>
+    <label>SchoolClass's ids</label>
+    <input id="schoolClass_ids" class="teacher">
+    <br>
+    <br>
+    <button onclick="createTeacher();">Create teacher</button>
+    <br>
+    <br>
+    <div id="responseCreate"></div>
+
+    <h2>Teacher (get)</h2>
+    <label>Id</label>
+    <input id="id" class="teacher" type="number" min="1" step="1">
+    <br>
+    <br>
+    <button onclick="getTeacher();">Get teacher</button>
+    <br>
+    <br>
+    <div id="responseGet"></div>
+
+    <h2>Teacher (getAll)</h2>
+    <button onclick="getAllTeachers();">Get all teachers</button>
+    <br>
+    <br>
+    <div id="responseGetAll"></div>
+
+    <h2>Teacher (update)</h2>
+    <label>Id</label>
+    <input id="idU" class="teacher" type="number" min="1" step="1">
+    <br>
+    <br>
+    <label>Person's id</label>
+    <input id="person_idU" class="teacher" type="number" min="1" step="1">
+    <br>
+    <br>
+    <label>Subject's ids</label>
+    <input id="subject_idsU" class="teacher">
+    <br>
+    <br>
+    <label>School's ids</label>
+    <input id="school_idsU" class="teacher">
+    <br>
+    <br>
+    <label>SchoolClass's ids</label>
+    <input id="schoolClass_idsU" class="teacher">
+    <br>
+    <br>
+    <button onclick="updateTeacher();">Update teacher</button>
+    <br>
+    <br>
+    <div id="responseUpdate"></div>
+
+    <h2>Teacher (delete)</h2>
+    <label>Id</label>
+    <input id="idD" class="teacher" type="number" min="1" step="1">
+    <br>
+    <br>
+    <button onclick="deleteTeacher();">Delete teacher</button>
+    <br>
+    <br>
+    <div id="responseDelete"></div>
+</body>
+</html>
