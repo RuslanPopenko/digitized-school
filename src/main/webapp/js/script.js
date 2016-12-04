@@ -22,8 +22,9 @@ function getPerson() {
     var url = '/api/persons/'+$('#id').val();
 
     sendAjax(url, 'GET', null, function (data) {
-        $('#responseGet').html('Person ' + data.id + ': ' + data.firstName + ' '
-            + data.lastName + ', age - ' + data.age + ', sex - ' + data.sex);
+        $('#responseGet').html('Person ' + data.id + ': '
+            + data.firstName + ' ' + data.lastName
+            + ', age - ' + data.age + ', sex - ' + data.sex);
     });
 }
 
@@ -35,7 +36,7 @@ function getAllPersons() {
         for (var i = 0; i < data.length; i++)
             output = output.concat('Person ' + data[i].id + ': '
                 + data[i].firstName + ' ' + data[i].lastName
-                + ', age - ' + data[i].age + ', sex - ' + data[i].sex + ' | ')
+                + ', age - ' + data[i].age + ', sex - ' + data[i].sex + '<br>')
         $('#responseGetAll').html(output);
     });
 }
@@ -57,8 +58,9 @@ function deletePerson() {
     var url = '/api/persons/'+$('#idD').val();
 
     sendAjax(url, 'DELETE', null, function (data) {
-        $('#responseDelete').html('Deleted person:' + data.firstName + ' '
-            + data.lastName + ', age - ' + data.age + ', sex - ' + data.sex);
+        $('#responseDelete').html('Deleted person:'
+            + data.firstName + ' ' + data.lastName
+            + ', age - ' + data.age + ', sex - ' + data.sex);
     });
 }
 
@@ -96,11 +98,12 @@ function getPupil() {
     var url = '/api/pupils/'+$('#id').val();
 
     sendAjax(url, 'GET', null, function (data) {
-        var output = 'Pupil ' + data.id + ': personId = ' + data.person.id
+        var output = 'Pupil ' + data.id
+            + ': personId = ' + data.person.id
             + ', schoolId = ' + data.school.id
-            + ', schoolClassId = ' + data.schoolClass + ', subjectIds -';
+            + ', schoolClassId = ' + data.schoolClass.id + ', subjectIds -';
         for (var i = 0; i < data.subjects.length; i++)
-            output = output.concat(' ' + data.subjects[i]);
+            output = output.concat(' ' + data.subjects[i].id);
         $('#responseGet').html(output);
     });
 }
@@ -110,36 +113,15 @@ function getAllPupils() {
 
     sendAjax(url, 'GET', null, function (data) {
         var output = '';
-        var flag = true;
         for (var i = 0; i < data.length; i++) {
-            if (i == 0 && flag) {
-                output = output.concat('Pupil ' + data[i].id
-                    + ': personId = ' + data[i].person.id
-                    + ', schoolId = ' + data[i].school.id
-                    + ', schoolClassId = ' + data[i].schoolClass + ', subjectIds -');
-                for (var j = 0; j < data[i].subjects.length; j++)
-                    output = output.concat(' ' + data[i].subjects[j]);
-                output = output.concat(' | ');
-                data.splice(0, 1);
-                flag = false;
-                i--;
-            }
-            else {
-                url = '/api/pupils/';
-                var pupils = [];
-                getRequestRecursive(url, data, pupils, function (data) {
-                    for (var j = 0; j < pupils.length; j++) {
-                        output = output.concat('Pupil ' + pupils[j].id
-                            + ': personId = ' + pupils[j].person.id
-                            + ', schoolId = ' + pupils[j].school.id
-                            + ', schoolClassId = ' + pupils[j].schoolClass + ', subjectIds -');
-                        for (var k = 0; k < pupils[j].subjects.length; k++)
-                            output = output.concat(' ' + pupils[j].subjects[k]);
-                        output = output.concat(' | ');
-                    }
-                    $('#responseGetAll').html(output);
-                });
-            }
+            output = output.concat('Pupil ' + data[i].id
+                + ': personId = ' + data[i].person.id
+                + ', schoolId = ' + data[i].school.id
+                + ', schoolClassId = ' + data[i].schoolClass.id + ', subjectIds -');
+            for (var j = 0; j < data[i].subjects.length; j++)
+                output = output.concat(' ' + data[i].subjects[j].id);
+            output = output.concat('<br>');
+            $('#responseGetAll').html(output);
         }
     });
 }
@@ -176,11 +158,12 @@ function deletePupil() {
     var url = '/api/pupils/'+$('#idD').val();
 
     sendAjax(url, 'DELETE', null, function (data) {
-        var output = 'Deleted pupil ' + data.id + ': personId = ' + data.person.id
+        var output = 'Deleted pupil ' + data.id
+            + ': personId = ' + data.person.id
             + ', schoolId = ' + data.school.id
-            + ', schoolClassId = ' + data.schoolClass + ', subjectIds -';
+            + ', schoolClassId = ' + data.schoolClass.id + ', subjectIds -';
         for (var i = 0; i < data.subjects.length; i++)
-            output = output.concat(' ' + data.subjects[i]);
+            output = output.concat(' ' + data.subjects[i].id);
         $('#responseDelete').html(output);
     });
 }
@@ -211,7 +194,8 @@ function getAllSubjects() {
     sendAjax(url, 'GET', null, function (data) {
         var output = '';
         for (var i = 0; i < data.length; i++)
-            output = output.concat('Subject ' + data[i].id + ': ' + data[i].name + ' | ')
+            output = output
+                .concat('Subject ' + data[i].id + ': ' + data[i].name + '<br>');
         $('#responseGetAll').html(output);
     });
 }
@@ -263,13 +247,9 @@ function getSchool() {
     var url = '/api/schools/'+$('#id').val();
 
     sendAjax(url, 'GET', null, function (data) {
-        var output = 'School ' + data.id + ': name - ' + data.name
-            + ', type - ' + data.type + ', pupilIds -';
-        for (var i = 0; i < data.pupil.length; i++)
-            output = output.concat(' ' + data.pupil[i]);
-        output = output.concat(', schoolClassIds -');
-        for (var i = 0; i < data.schoolClasses.length; i++)
-            output = output.concat(' ' + data.schoolClasses[i].id);
+        var output = 'School ' + data.id
+            + ': name - ' + data.name
+            + ', type - ' + data.type;
         $('#responseGet').html(output);
     });
 }
@@ -280,14 +260,10 @@ function getAllSchools() {
     sendAjax(url, 'GET', null, function (data) {
         var output = '';
         for (var i = 0; i < data.length; i++) {
-            output = output.concat('School ' + data[i].id + ': name - ' + data[i].name
-                + ', type - ' + data[i].type + ', pupilIds -');
-            for (var j = 0; j < data[i].pupil.length; j++)
-                output = output.concat(' ' + data[i].pupil[j]);
-            output = output.concat(', schoolClassIds -');
-            for (var j = 0; j < data[i].schoolClasses.length; j++)
-                output = output.concat(' ' + data[i].schoolClasses[j].id);
-            output = output.concat(' | ');
+            output = output.concat('School ' + data[i].id
+                + ': name - ' + data[i].name
+                + ', type - ' + data[i].type);
+            output = output.concat('<br>');
         }
         $('#responseGetAll').html(output);
     });
@@ -320,13 +296,9 @@ function deleteSchool() {
     var url = '/api/schools/'+$('#idD').val();
 
     sendAjax(url, 'DELETE', null, function (data) {
-        var output = 'Deleted school ' + data.id + ': name - ' + data.name
-            + ', type - ' + data.type + ', pupilIds -';
-        for (var i = 0; i < data.pupil.length; i++)
-            output = output.concat(' ' + data.pupil[i]);
-        output = output.concat(', schoolClassIds -');
-        for (var i = 0; i < data.schoolClasses.length; i++)
-            output = output.concat(' ' + data.schoolClasses[i].id);
+        var output = 'Deleted school ' + data.id
+            + ': name - ' + data.name
+            + ', type - ' + data.type;
         $('#responseDelete').html(output);
     });
 }
@@ -363,13 +335,11 @@ function getSchoolClass() {
     var url = '/api/schoolclasses/'+$('#id').val();
 
     sendAjax(url, 'GET', null, function (data) {
-        var output = 'SchoolClass ' + data.id + ': name - ' + data.name
-            + ', schoolId = ' + data.school + ', pupilIds -';
-        for (var i = 0; i < data.pupils.length; i++)
-            output = output.concat(' ' + data.pupils[i].id);
-        output = output.concat(', subjectIds -');
+        var output = 'SchoolClass ' + data.id
+            + ': name - ' + data.name
+            + ', schoolId = ' + data.school.id + ', subjectIds -';
         for (var i = 0; i < data.subjects.length; i++)
-            output = output.concat(' ' + data.subjects[i]);
+            output = output.concat(' ' + data.subjects[i].id);
         $('#responseGet').html(output);
     });
 }
@@ -379,40 +349,14 @@ function getAllSchoolClasses() {
 
     sendAjax(url, 'GET', null, function (data) {
         var output = '';
-        var flag = true;
         for (var i = 0; i < data.length; i++) {
-            if (i == 0 && flag) {
-                output = output.concat('SchoolClass ' + data[i].id
-                    + ': name - ' + data[i].name
-                    + ', schoolId = ' + data[i].school + ', pupilIds -');
-                for (var j = 0; j < data[i].pupils.length; j++)
-                    output = output.concat(' ' + data[i].pupils[j].id);
-                output = output.concat(', subjectIds -');
-                for (var j = 0; j < data[i].subjects.length; j++)
-                    output = output.concat(' ' + data[i].subjects[j]);
-                output = output.concat(' | ');
-                data.splice(0, 1);
-                flag = false;
-                i--;
-            }
-            else {
-                url = '/api/schoolclasses/';
-                var schoolclasses = [];
-                getRequestRecursive(url, data, schoolclasses, function(data) {
-                    for (var j = 0; j < schoolclasses.length; j++) {
-                        output = output.concat('SchoolClass ' + schoolclasses[j].id
-                            + ': name - ' + schoolclasses[j].name
-                            + ', schoolId = ' + schoolclasses[j].school + ', pupilIds -');
-                        for (var k = 0; k < schoolclasses[j].pupils.length; k++)
-                            output = output.concat(' ' + schoolclasses[j].pupils[k].id);
-                        output = output.concat(', subjectIds -');
-                        for (var k = 0; k < schoolclasses[j].subjects.length; k++)
-                            output = output.concat(' ' + schoolclasses[j].subjects[k]);
-                        output = output.concat(' | ');
-                        $('#responseGetAll').html(output);
-                    }
-                });
-            }
+            output = output.concat('SchoolClass ' + data[i].id
+                + ': name - ' + data[i].name
+                + ', schoolId = ' + data[i].school.id + ', subjectIds -');
+            for (var j = 0; j < data[i].subjects.length; j++)
+                output = output.concat(' ' + data[i].subjects[j].id);
+            output = output.concat('<br>');
+            $('#responseGetAll').html(output);
         }
     });
 }
@@ -447,13 +391,11 @@ function deleteSchoolClass() {
     var url = '/api/schoolclasses/'+$('#idD').val();
 
     sendAjax(url, 'DELETE', null, function (data) {
-        var output = 'Deleted schoolClass ' + data.id + ': name - ' + data.name
-            + ', schoolId = ' + data.school + ', pupilIds -';
-        for (var i = 0; i < data.pupils.length; i++)
-            output = output.concat(' ' + data.pupils[i].id);
-        output = output.concat(', subjectIds -');
+        var output = 'Deleted schoolClass ' + data.id
+            + ': name - ' + data.name
+            + ', schoolId = ' + data.school.id + ', subjectIds -';
         for (var i = 0; i < data.subjects.length; i++)
-            output = output.concat(' ' + data.subjects[i]);
+            output = output.concat(' ' + data.subjects[i].id);
         $('#responseDelete').html(output);
     });
 }
@@ -498,13 +440,13 @@ function getTeacher() {
         var output = 'Teacher ' + data.id
             + ': personId = ' + data.person.id + ', subjectIds -';
         for (var i = 0; i < data.subjects.length; i++)
-            output = output.concat(' ' + data.subjects[i]);
+            output = output.concat(' ' + data.subjects[i].id);
         output = output.concat(', schoolIds -');
         for (var i = 0; i < data.schools.length; i++)
             output = output.concat(' ' + data.schools[i].id);
         output = output.concat(', schoolClassIds -');
         for (var i = 0; i < data.schoolClasses.length; i++)
-            output = output.concat(' ' + data.schoolClasses[i]);
+            output = output.concat(' ' + data.schoolClasses[i].id);
         $('#responseGet').html(output);
     });
 }
@@ -518,17 +460,14 @@ function getAllTeachers() {
             output = output.concat('Teacher ' + data[i].id
                 + ': personId = ' + data[i].person.id + ', subjectIds -');
             for (var j = 0; j < data[i].subjects.length; j++)
-                output = output.concat(' ' + data[i].subjects[j]);
+                output = output.concat(' ' + data[i].subjects[j].id);
             output = output.concat(', schoolIds -');
             for (var j = 0; j < data[i].schools.length; j++)
-                if (i == 0)
-                    output = output.concat(' ' + data[i].schools[j].id);
-                else
-                    output = output.concat(' ' + data[i].schools[j]);
+                output = output.concat(' ' + data[i].schools[j].id);
             output = output.concat(', schoolClassIds -');
             for (var j = 0; j < data[i].schoolClasses.length; j++)
-                output = output.concat(' ' + data[i].schoolClasses[j]);
-            output = output.concat(' | ');
+                output = output.concat(' ' + data[i].schoolClasses[j].id);
+            output = output.concat('<br>');
         }
         $('#responseGetAll').html(output);
     });
@@ -555,7 +494,7 @@ function updateTeacher() {
                 teacherData['schoolClasses'] = [];
                 url = '/api/schoolclasses/';
                 getRequestRecursive(url, ids, teacherData['schoolClasses'], function(data) {
-                    url = '/api/teachers'+$('#idU').val();
+                    url = '/api/teachers/'+$('#idU').val();
                     sendAjax(url, 'PUT', teacherData, function (data) {
                         $('#responseUpdate').html('Updated teacher with id = ' + data.id);
                     });
@@ -572,13 +511,13 @@ function deleteTeacher() {
         var output = 'Deleted teacher ' + data.id
             + ': personId = ' + data.person.id + ', subjectIds -';
         for (var i = 0; i < data.subjects.length; i++)
-            output = output.concat(' ' + data.subjects[i]);
+            output = output.concat(' ' + data.subjects[i].id);
         output = output.concat(', schoolIds -');
         for (var i = 0; i < data.schools.length; i++)
             output = output.concat(' ' + data.schools[i].id);
         output = output.concat(', schoolClassIds -');
         for (var i = 0; i < data.schoolClasses.length; i++)
-            output = output.concat(' ' + data.schoolClasses[i]);
+            output = output.concat(' ' + data.schoolClasses[i].id);
         $('#responseDelete').html(output);
     });
 }

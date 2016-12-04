@@ -1,8 +1,6 @@
 package ua.kpi.dreamteam.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import ua.kpi.dreamteam.entities.superclasses.AbstractIdEntity;
 
 import javax.persistence.*;
@@ -13,7 +11,6 @@ import java.util.Set;
  * Created by yevhenii on 03.11.16.
  */
 @Entity
-//@JsonIgnoreProperties("schoolClasses")
 public class School extends AbstractIdEntity<Long> implements Serializable {
     @Column
     private String name;
@@ -22,11 +19,10 @@ public class School extends AbstractIdEntity<Long> implements Serializable {
     private String type;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "school")
-    //@JsonManagedReference
     private Set<Pupil> pupils;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "school")
-    //@JsonManagedReference
+    @JsonIgnoreProperties({"school"})
     private Set<SchoolClass> schoolClasses;
 
     public String getName() {
@@ -45,11 +41,11 @@ public class School extends AbstractIdEntity<Long> implements Serializable {
         this.type = type;
     }
 
-    public Set<Pupil> getPupil() {
+    public Set<Pupil> getPupils() {
         return pupils;
     }
 
-    public void setPupil(Set<Pupil> pupils) {
+    public void setPupils(Set<Pupil> pupils) {
         this.pupils = pupils;
     }
 
@@ -82,6 +78,5 @@ public class School extends AbstractIdEntity<Long> implements Serializable {
         if (type != null ? !type.equals(school.type) : school.type != null) return false;
         if (pupils != null ? !pupils.equals(school.pupils) : school.pupils != null) return false;
         return schoolClasses != null ? schoolClasses.equals(school.schoolClasses) : school.schoolClasses == null;
-
     }
 }
