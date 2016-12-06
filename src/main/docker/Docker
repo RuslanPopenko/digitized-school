@@ -1,0 +1,5 @@
+FROM java:8
+VOLUME /tmp
+ADD digitized-s.jar digitizedschool.jar
+RUN bash -c 'touch /digitizedschool.jar'
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/digitizedschool.jar"]
