@@ -8,28 +8,56 @@ Prerequisites
     * Maven 3.0
     * MySQLServer 5.7
     * Git 2.10.2
+    * Docker 1.12.3
 
-In order to run this project, you need
---------------------------------------
+#. `Run project usual way`_
+#. `Run project with Docker`_
 
-1. Open Terminal on Linux or Git Bash on Windows on directory for Project purpose
+Run project usual way
+---------------------
 
-2. Input following commands
+1. Clone project from Github
 
     git clone https://github.com/RuslanPopenko/digitized-school.git
 
-3. Create new empty schema called 'db_digitilized_school' on MySQLServer
+2. Create new empty schema called 'db_digitilized_school' on MySQLServer
 
     CREATE SCHEMA `db_digitilized_school`;
 
-4. In application.properties (src/resources) change database username and password
+3. In application.properties (src/resources) change database username and password
 
-5. Open digitized-school directory and execute following code in a shell
+4. Open digitized-school directory and execute following code in a shell
 
     mvn clean package
 
-6. Move to target directory and run jar file
+5. Move to target directory and run jar file
 
-    cd target
+    cd /project-location/target
 
     java -jar digitized-school-1.0.jar
+
+Run project with Docker
+-----------------------
+
+1. Clone project from Github
+
+    git clone https://github.com/RuslanPopenko/digitized-school.git
+
+2. Move to project directory
+
+    cd /../project directory
+
+3. Build Docker image of project
+
+    sudo docker -t build "digitized-school" .
+
+4. Run MySQL image from Docker hub
+
+    sudo docker run --name demo-mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=demo -e MYSQL_USER=demo_user -e MYSQL_PASSWORD=demo_pass -d mysql:5.6
+
+5. Run project image and link with running MySQL image
+
+    sudo docker run -p 8080:8080 --name demo-app --link demo-mysql:mysql -d digitized-school
+
+
+
