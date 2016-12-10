@@ -46,7 +46,7 @@ Run project with Docker
 
 3. Build Docker image of project
 
-    sudo docker -t build "digitized-school" .
+    sudo docker build -t "digitized-school" .
 
 4. Run MySQL image from Docker hub
 
