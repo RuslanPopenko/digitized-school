@@ -10,9 +10,6 @@ Prerequisites
     * Git 2.10.2
     * Docker 1.12.3
 
-#. `Run project usual way`_
-#. `Run project with Docker`_
-
 Run project usual way
 ---------------------
 
