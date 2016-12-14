@@ -2,12 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="/css/style_entities.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="/js/script.js"></script>
     <title>SchoolClass</title>
 </head>
 <body>
-    <h2>SchoolClass (create)</h2>
+
+<h2>On this page you can
+    <br>work with entity
+    <br><b>SchoolClass</b></h2>
+<br>
+
+<ul class="fancyNav">
+    <li><a href="/pages/person.html"><i>Person</i></a></li>
+
+    <li> <a href="/pages/pupil.html"><i>Pupil</i></a></li>
+
+    <li><a href="/pages/subject.html"><i>Subject</i></a></li>
+
+    <li><a href="/pages/school.html"><i>School</i></a></li>
+
+    <li><a href="/pages/schoolclass.html"><i>SchoolClass</i></a></li>
+
+    <li><a href="/pages/teacher.html"><i>Teacher</i></a></li>
+</ul>
+
+<br>
+<br>
+
+<details>
+    <summary><h3>SchoolClass (create)</h3></summary>
+    <br>
+    <br>
+
     <label for="name">Name</label>
     <input id="name" class="schoolclass">
     <br>
@@ -28,8 +56,16 @@
     <br>
     <br>
     <div id="responseCreate"></div>
+    </details>
 
-    <h2>SchoolClass (get)</h2>
+<br>
+<br>
+
+<details>
+    <summary><h3>SchoolClass (get)</h3></summary>
+    <br>
+    <br>
+
     <label>Id</label>
     <input id="id" class="schoolclass" type="number" min="1" step="1">
     <br>
@@ -38,14 +74,29 @@
     <br>
     <br>
     <div id="responseGet"></div>
+    </details>
 
-    <h2>SchoolClass (getAll)</h2>
+<br>
+<br>
+
+<details>
+    <summary><h3>SchoolClass (getAll)</h3></summary>
+    <br>
+    <br>
+
     <button onclick="getAllSchoolClasses();">Get all schoolClasses</button>
     <br>
     <br>
     <div id="responseGetAll"></div>
+    </details>
+<br>
+<br>
 
-    <h2>SchoolClass (update)</h2>
+<details>
+    <summary><h3>SchoolClass (update)</h3></summary>
+    <br>
+    <br>
+
     <label>SchoolClass's id</label>
     <input id="idU" class="schoolclass" type="number" min="1" step="1">
     <br>
@@ -70,8 +121,16 @@
     <br>
     <br>
     <div id="responseUpdate"></div>
+    </details>
 
-    <h2>SchoolClass (delete)</h2>
+<br>
+<br>
+
+<details>
+    <summary><h3>SchoolClass (delete)</h3></summary>
+    <br>
+    <br>
+
     <label>Id</label>
     <input id="idD" class="schoolclass" type="number" min="1" step="1">
     <br>
@@ -80,5 +139,7 @@
     <br>
     <br>
     <div id="responseDelete"></div>
+    </details>
+
 </body>
 </html>

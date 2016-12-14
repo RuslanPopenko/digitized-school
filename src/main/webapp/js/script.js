@@ -24,7 +24,7 @@ function getPerson() {
     sendAjax(url, 'GET', null, function (data) {
         $('#responseGet').html('Person ' + data.id + ': '
             + data.firstName + ' ' + data.lastName
-            + ', age - ' + data.age + ', sex - ' + data.sex);
+            + ', age - ' + data.age + ', ' + (data.sex ? 'man' : 'woman'));
     });
 }
 
@@ -36,7 +36,7 @@ function getAllPersons() {
         for (var i = 0; i < data.length; i++)
             output = output.concat('Person ' + data[i].id + ': '
                 + data[i].firstName + ' ' + data[i].lastName
-                + ', age - ' + data[i].age + ', sex - ' + data[i].sex + '<br>')
+                + ', age - ' + data[i].age + ', ' + (data[i].sex?'man':'woman') + '<br>')
         $('#responseGetAll').html(output);
     });
 }

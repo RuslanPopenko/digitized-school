@@ -2,12 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="/css/style_entities.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="/js/script.js"></script>
     <title>Pupil</title>
 </head>
 <body>
-    <h2>Pupil (create)</h2>
+
+<h2>On this page you can
+    <br>work with entity
+    <br><b>Pupil</b></h2>
+<br>
+
+<ul class="fancyNav">
+    <li><a href="/pages/person.html"><i>Person</i></a></li>
+
+    <li> <a href="/pages/pupil.html"><i>Pupil</i></a></li>
+
+    <li><a href="/pages/subject.html"><i>Subject</i></a></li>
+
+    <li><a href="/pages/school.html"><i>School</i></a></li>
+
+    <li><a href="/pages/schoolclass.html"><i>SchoolClass</i></a></li>
+
+    <li><a href="/pages/teacher.html"><i>Teacher</i></a></li>
+</ul>
+
+<br>
+<br>
+
+
+<details>
+    <summary><h3>Pupil (create)</h3></summary>
+    <br>
+    <br>
+
     <label>Person's id</label>
     <input id="person_id" class="pupil" type="number" min="1" step="1">
     <br>
@@ -28,8 +57,15 @@
     <br>
     <br>
     <div id="responseCreate"></div>
+    </details>
 
-    <h2>Pupil (get)</h2>
+<br>
+<br>
+
+<details>
+    <summary><h3>Pupil (get)</h3></summary>
+    <br>
+    <br>
     <label>Id</label>
     <input id="id" class="pupil" type="number" min="1" step="1">
     <br>
@@ -38,14 +74,30 @@
     <br>
     <br>
     <div id="responseGet"></div>
+    </details>
 
-    <h2>Pupil (getAll)</h2>
+<br>
+<br>
+
+<details>
+    <summary><h3>Pupil (getAll)</h3></summary>
+    <br>
+    <br>
+
     <button onclick="getAllPupils();">Get all pupils</button>
     <br>
     <br>
     <div id="responseGetAll"></div>
+    </details>
 
-    <h2>Pupil (update)</h2>
+<br>
+<br>
+
+<details>
+    <summary><h3>Pupil (update)</h3></summary>
+    <br>
+    <br>
+
     <label>Pupil's id</label>
     <input id="idU" class="pupil" type="number" min="1" step="1">
     <br>
@@ -70,8 +122,16 @@
     <br>
     <br>
     <div id="responseUpdate"></div>
+    </details>
 
-    <h2>Pupil (delete)</h2>
+<br>
+<br>
+
+<details>
+    <summary><h3>Pupil (delete)</h3></summary>
+    <br>
+    <br>
+
     <label>Id</label>
     <input id="idD" class="pupil" type="number" min="1" step="1">
     <br>
@@ -80,5 +140,7 @@
     <br>
     <br>
     <div id="responseDelete"></div>
+    </details>
+
 </body>
 </html>
