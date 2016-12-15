@@ -22,7 +22,6 @@ public class School extends AbstractIdEntity<Long> implements Serializable {
     private Set<Pupil> pupils;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "school")
-    @JsonIgnoreProperties({"school"})
     private Set<SchoolClass> schoolClasses;
 
     public String getName() {
@@ -57,26 +56,4 @@ public class School extends AbstractIdEntity<Long> implements Serializable {
         this.schoolClasses = schoolClasses;
     }
 
-    @Override
-    public String toString() {
-        return "School{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", pupils=" + pupils +
-                ", schoolClasses=" + schoolClasses +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        School school = (School) o;
-
-        if (name != null ? !name.equals(school.name) : school.name != null) return false;
-        if (type != null ? !type.equals(school.type) : school.type != null) return false;
-        if (pupils != null ? !pupils.equals(school.pupils) : school.pupils != null) return false;
-        return schoolClasses != null ? schoolClasses.equals(school.schoolClasses) : school.schoolClasses == null;
-    }
 }

@@ -55,27 +55,4 @@ public class Person extends AbstractIdEntity<Long> implements Serializable {
         this.sex = sex;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", sex=" + sex +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Person person = (Person) o;
-
-        if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null) return false;
-        if (age != null ? !age.equals(person.age) : person.age != null) return false;
-        return sex != null ? sex.equals(person.sex) : person.sex == null;
-
-    }
 }

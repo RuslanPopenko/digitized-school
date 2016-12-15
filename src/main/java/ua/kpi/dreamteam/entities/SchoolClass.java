@@ -1,5 +1,6 @@
 package ua.kpi.dreamteam.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ua.kpi.dreamteam.entities.superclasses.AbstractIdEntity;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class SchoolClass extends AbstractIdEntity<Long> implements Serializable 
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="school_id")
+    @JsonIgnoreProperties("schoolClasses")
     private School school;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
@@ -59,26 +61,4 @@ public class SchoolClass extends AbstractIdEntity<Long> implements Serializable 
         this.subjects = subjects;
     }
 
-    @Override
-    public String toString() {
-        return "SchoolClass{" +
-                "name='" + name + '\'' +
-                ", pupils=" + pupils +
-                ", school=" + school +
-                ", subjects=" + subjects +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        SchoolClass that = (SchoolClass) o;
-
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (pupils != null ? !pupils.equals(that.pupils) : that.pupils != null) return false;
-        if (school != null ? !school.equals(that.school) : that.school != null) return false;
-        return subjects != null ? subjects.equals(that.subjects) : that.subjects == null;
-    }
 }

@@ -65,29 +65,4 @@ public class Teacher extends AbstractIdEntity<Long> implements Serializable {
         this.subjects = subjects;
     }
 
-    @Override
-    public String toString() {
-        return "Teacher{" +
-                "person=" + person +
-                ", schools=" + schools +
-                ", schoolClasses=" + schoolClasses +
-                ", subjects=" + subjects +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Teacher teacher = (Teacher) o;
-
-        if (person != null ? !person.equals(teacher.person) : teacher.person != null) return false;
-        if (schools != null ? !schools.equals(teacher.schools) : teacher.schools != null) return false;
-        if (schoolClasses != null ? !schoolClasses.equals(teacher.schoolClasses) : teacher.schoolClasses != null)
-            return false;
-        return subjects != null ? subjects.equals(teacher.subjects) : teacher.subjects == null;
-
-    }
-
 }

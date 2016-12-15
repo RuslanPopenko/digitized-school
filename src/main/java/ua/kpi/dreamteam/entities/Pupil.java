@@ -64,28 +64,4 @@ public class Pupil extends AbstractIdEntity<Long> implements Serializable {
         this.subjects = subjects;
     }
 
-    @Override
-    public String toString() {
-        return "Pupil{" +
-                "person=" + person +
-                ", school=" + school +
-                ", schoolClass=" + schoolClass +
-                ", subjects=" + subjects +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Pupil pupil = (Pupil) o;
-
-        if (person != null ? !person.equals(pupil.person) : pupil.person != null) return false;
-        if (school != null ? !school.equals(pupil.school) : pupil.school != null) return false;
-        if (schoolClass != null ? !schoolClass.equals(pupil.schoolClass) : pupil.schoolClass != null) return false;
-        return subjects != null ? subjects.equals(pupil.subjects) : pupil.subjects == null;
-
-    }
-
 }
