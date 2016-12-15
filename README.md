@@ -13,48 +13,48 @@ Prerequisites
 Run project usual way
 ---------------------
 
-1. Clone project from Github
+- Clone project from Github
 
-    git clone https://github.com/RuslanPopenko/digitized-school.git
+    - `git clone https://github.com/RuslanPopenko/digitized-school.git`
 
-2. Create new empty schema called 'db_digitilized_school' on MySQLServer
+- Create new empty schema called 'db_digitilized_school' on MySQLServer
 
-    CREATE SCHEMA `db_digitilized_school`;
+    - ``CREATE SCHEMA `db_digitilized_school`;``
 
-3. In application.properties (src/resources) change database username and password
+- In application.properties (src/resources) change database username and password
 
-4. Open digitized-school directory and execute following code in a shell
+- Open digitized-school directory and execute following code in a shell
 
-    mvn clean package
+    - `mvn clean package`
 
-5. Move to target directory and run jar file
+- Move to target directory and run jar file
 
-    cd /project-location/target
+    - `cd /project-location/target`
 
-    java -jar digitized-school-1.0.jar
+    - `java -jar digitized-school-1.0.jar`
 
 Run project with Docker
 -----------------------
 
-1. Clone project from Github
+- Clone project from Github
 
-    git clone https://github.com/RuslanPopenko/digitized-school.git
+    - `git clone https://github.com/RuslanPopenko/digitized-school.git`
 
-2. Move to project directory
+- Move to project directory
 
-    cd /../project directory
+    - `cd /../project directory`
 
-3. Build Docker image of project
+- Build Docker image of project
 
-    sudo docker build -t "digitized-school" .
+    - `sudo docker build -t "digitized-school" .`
 
-4. Run MySQL image from Docker hub
+- Run MySQL image from Docker hub
 
-    sudo docker run --name demo-mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=demo -e MYSQL_USER=demo_user -e MYSQL_PASSWORD=demo_pass -d mysql:5.6
+    - `sudo docker run --name demo-mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=demo -e MYSQL_USER=demo_user -e MYSQL_PASSWORD=demo_pass -d mysql:5.6`
 
-5. Run project image and link with running MySQL image
+- Run project image and link with running MySQL image
 
-    sudo docker run -p 8080:8080 --name demo-app --link demo-mysql:mysql -d digitized-school
+    - `sudo docker run -p 8080:8080 --name demo-app --link demo-mysql:mysql -d digitized-school`
 
 
 
