@@ -101,9 +101,16 @@ function getPupil() {
         var output = 'Pupil ' + data.id
             + ': personId = ' + data.person.id
             + ', schoolId = ' + data.school.id
-            + ', schoolClassId = ' + data.schoolClass.id + ', subjectIds -';
-        for (var i = 0; i < data.subjects.length; i++)
-            output = output.concat(' ' + data.subjects[i].id);
+            + ', schoolClassId = ' + data.schoolClass.id;
+        if (data.subjects.length != 0)
+            output += ', subjectIds -';
+        else
+            output += ', no subjects';
+        for (var i = 0; i < data.subjects.length; i++) {
+            output = output.concat(data.subjects[i].id);
+            if (i != data.subjects.length-1)
+                output = output.concat(', ');
+        }
         $('#responseGet').html(output);
     });
 }
@@ -117,9 +124,16 @@ function getAllPupils() {
             output = output.concat('Pupil ' + data[i].id
                 + ': personId = ' + data[i].person.id
                 + ', schoolId = ' + data[i].school.id
-                + ', schoolClassId = ' + data[i].schoolClass.id + ', subjectIds -');
-            for (var j = 0; j < data[i].subjects.length; j++)
-                output = output.concat(' ' + data[i].subjects[j].id);
+                + ', schoolClassId = ' + data[i].schoolClass.id);
+            if (data[i].subjects.length != 0)
+                output += ', subjectIds -';
+            else
+                output += ', no subjects';
+            for (var j = 0; j < data[i].subjects.length; j++) {
+                output = output.concat(data[i].subjects[j].id + ', ');
+                if (j != data[i].subjects.length-1)
+                    output = output.concat(', ');
+            }
             output = output.concat('<br>');
             $('#responseGetAll').html(output);
         }
@@ -161,9 +175,16 @@ function deletePupil() {
         var output = 'Deleted pupil ' + data.id
             + ': personId = ' + data.person.id
             + ', schoolId = ' + data.school.id
-            + ', schoolClassId = ' + data.schoolClass.id + ', subjectIds -';
-        for (var i = 0; i < data.subjects.length; i++)
-            output = output.concat(' ' + data.subjects[i].id);
+            + ', schoolClassId = ' + data.schoolClass.id;
+        if (data.subjects.length != 0)
+            output += ', subjectIds -';
+        else
+            output += ', no subjects';
+        for (var i = 0; i < data.subjects.length; i++) {
+            output = output.concat(data.subjects[i].id + ', ');
+            if (i != data.subjects.length-1)
+                output = output.concat(', ');
+        }
         $('#responseDelete').html(output);
     });
 }
@@ -337,9 +358,16 @@ function getSchoolClass() {
     sendAjax(url, 'GET', null, function (data) {
         var output = 'SchoolClass ' + data.id
             + ': name - ' + data.name
-            + ', schoolId = ' + data.school.id + ', subjectIds -';
-        for (var i = 0; i < data.subjects.length; i++)
+            + ', schoolId = ' + data.school.id;
+        if (data.subjects.length != 0)
+            output += ', subjectIds -';
+        else
+            output += ', no subjects';
+        for (var i = 0; i < data.subjects.length; i++) {
             output = output.concat(' ' + data.subjects[i].id);
+            if (i != data.subjects.length-1)
+                output = output.concat(', ');
+        }
         $('#responseGet').html(output);
     });
 }
@@ -352,9 +380,16 @@ function getAllSchoolClasses() {
         for (var i = 0; i < data.length; i++) {
             output = output.concat('SchoolClass ' + data[i].id
                 + ': name - ' + data[i].name
-                + ', schoolId = ' + data[i].school.id + ', subjectIds -');
-            for (var j = 0; j < data[i].subjects.length; j++)
+                + ', schoolId = ' + data[i].school.id);
+            if (data[i].subjects.length != 0)
+                output += ', subjectIds -';
+            else
+                output += ', no subjects';
+            for (var j = 0; j < data[i].subjects.length; j++) {
                 output = output.concat(' ' + data[i].subjects[j].id);
+                if (j != data[i].subjects.length-1)
+                    output = output.concat(', ');
+            }
             output = output.concat('<br>');
             $('#responseGetAll').html(output);
         }
@@ -393,9 +428,16 @@ function deleteSchoolClass() {
     sendAjax(url, 'DELETE', null, function (data) {
         var output = 'Deleted schoolClass ' + data.id
             + ': name - ' + data.name
-            + ', schoolId = ' + data.school.id + ', subjectIds -';
-        for (var i = 0; i < data.subjects.length; i++)
+            + ', schoolId = ' + data.school.id;
+        if (data.subjects.length != 0)
+            output += ', subjectIds -';
+        else
+            output += ', no subjects';
+        for (var i = 0; i < data.subjects.length; i++) {
             output = output.concat(' ' + data.subjects[i].id);
+            if (i != data.subjects.length-1)
+                output = output.concat(', ');
+        }
         $('#responseDelete').html(output);
     });
 }
@@ -438,15 +480,34 @@ function getTeacher() {
 
     sendAjax(url, 'GET', null, function (data) {
         var output = 'Teacher ' + data.id
-            + ': personId = ' + data.person.id + ', subjectIds -';
-        for (var i = 0; i < data.subjects.length; i++)
+            + ': personId = ' + data.person.id;
+        if (data.subjects.length != 0)
+            output += ', subjectIds -';
+        else
+            output += ', no subjects';
+        for (var i = 0; i < data.subjects.length; i++) {
             output = output.concat(' ' + data.subjects[i].id);
-        output = output.concat(', schoolIds -');
-        for (var i = 0; i < data.schools.length; i++)
+            if (i != data.subjects.length-1)
+                output = output.concat(', ');
+        }
+        if (data.schools.length != 0)
+            output += ', schoolIds -';
+        else
+            output += ', no schools';
+        for (var i = 0; i < data.schools.length; i++) {
             output = output.concat(' ' + data.schools[i].id);
-        output = output.concat(', schoolClassIds -');
-        for (var i = 0; i < data.schoolClasses.length; i++)
+            if (i != data.schools.length-1)
+                output = output.concat(', ');
+        }
+        if (data.schoolClasses.length != 0)
+            output += ', schoolClassIds -';
+        else
+            output += ', no schoolClasses';
+        for (var i = 0; i < data.schoolClasses.length; i++) {
             output = output.concat(' ' + data.schoolClasses[i].id);
+            if (i != data.schoolClasses.length-1)
+                output = output.concat(', ');
+        }
         $('#responseGet').html(output);
     });
 }
@@ -458,15 +519,34 @@ function getAllTeachers() {
         var output = '';
         for (var i = 0; i < data.length; i++) {
             output = output.concat('Teacher ' + data[i].id
-                + ': personId = ' + data[i].person.id + ', subjectIds -');
-            for (var j = 0; j < data[i].subjects.length; j++)
+                + ': personId = ' + data[i].person.id);
+            if (data[i].subjects.length != 0)
+                output += ', subjectIds -';
+            else
+                output += ', no subjects';
+            for (var j = 0; j < data[i].subjects.length; j++) {
                 output = output.concat(' ' + data[i].subjects[j].id);
-            output = output.concat(', schoolIds -');
-            for (var j = 0; j < data[i].schools.length; j++)
+                if (j != data.subjects.length-1)
+                    output = output.concat(', ');
+            }
+            if (data[i].schools.length != 0)
+                output += ', schoolIds -';
+            else
+                output += ', no schools';
+            for (var j = 0; j < data[i].schools.length; j++) {
                 output = output.concat(' ' + data[i].schools[j].id);
-            output = output.concat(', schoolClassIds -');
-            for (var j = 0; j < data[i].schoolClasses.length; j++)
+                if (j != data.schools.length-1)
+                    output = output.concat(', ');
+            }
+            if (data[i].schoolClasses.length != 0)
+                output += ', schoolClassIds -';
+            else
+                output += ', no schoolClasses';
+            for (var j = 0; j < data[i].schoolClasses.length; j++) {
                 output = output.concat(' ' + data[i].schoolClasses[j].id);
+                if (j != data.schoolClasses.length-1)
+                    output = output.concat(', ');
+            }
             output = output.concat('<br>');
         }
         $('#responseGetAll').html(output);
@@ -509,15 +589,34 @@ function deleteTeacher() {
 
     sendAjax(url, 'DELETE', null, function (data) {
         var output = 'Deleted teacher ' + data.id
-            + ': personId = ' + data.person.id + ', subjectIds -';
-        for (var i = 0; i < data.subjects.length; i++)
+            + ': personId = ' + data.person.id;
+        if (data.subjects.length != 0)
+            output += ', subjectIds -';
+        else
+            output += ', no subjects';
+        for (var i = 0; i < data.subjects.length; i++) {
             output = output.concat(' ' + data.subjects[i].id);
-        output = output.concat(', schoolIds -');
-        for (var i = 0; i < data.schools.length; i++)
+            if (i != data.subjects.length-1)
+                output = output.concat(', ');
+        }
+        if (data.schools.length != 0)
+            output += ', schoolIds -';
+        else
+            output += ', no schools';
+        for (var i = 0; i < data.schools.length; i++) {
             output = output.concat(' ' + data.schools[i].id);
-        output = output.concat(', schoolClassIds -');
-        for (var i = 0; i < data.schoolClasses.length; i++)
+            if (i != data.schools.length-1)
+                output = output.concat(', ');
+        }
+        if (data.schoolClasses.length != 0)
+            output += ', schoolClassIds -';
+        else
+            output += ', no schoolClasses';
+        for (var i = 0; i < data.schoolClasses.length; i++) {
             output = output.concat(' ' + data.schoolClasses[i].id);
+            if (i != data.schoolClasses.length-1)
+                output = output.concat(', ');
+        }
         $('#responseDelete').html(output);
     });
 }
