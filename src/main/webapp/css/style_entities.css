@@ -37,7 +37,7 @@ body{
 
     border-right: 1px solid rgba(9, 9, 9, 0.125);
 
-    /* Adding a 1px inset highlight for a more polished efect: */
+     /*Adding a 1px inset highlight for a more polished efect:*/
 
     box-shadow: 1px -1px 0 rgba(255, 255, 255, 0.6) inset;
     -moz-box-shadow: 1px -1px 0 rgba(255, 255, 255, 0.6) inset;
@@ -148,6 +148,15 @@ body{
     white-space:nowrap;
 }
 
+.fancyNav a.homeIcon{
+    background:url('../images/home.png') no-repeat center center;
+    display: block;
+    overflow: hidden;
+    padding: 32px 30px 14px;
+    text-indent: -9999px;
+    width: 16px;
+}
+
 /*-------------------------
 	Demo Page Styles
 --------------------------*/
@@ -172,10 +181,10 @@ h1{
 }
 
 h2{
-    position: relative;
-    left: 100%;
+
+    position: absolute;
+    left: 80%;
     font-size: 30px;
-    margin-left: -446px;
     padding: 5px 15px 10px;
     top: 20px;
 }
@@ -201,6 +210,44 @@ nav{
     margin: 300px auto 0;
     text-align: center;
     width: 600px;
+}
+
+button{
+    display: inline-block;
+    font-family: arial,sans-serif;
+    font-size: 20px;
+    color: rgb(205,216,228);
+    text-shadow: 0 -1px rgb(46,53,58);
+    text-decoration: none;
+    user-select: none;
+    line-height: 2em;
+    padding: 1px 1.2em;
+    outline: none;
+    border: 1px solid rgba(33,43,52,1);
+    border-radius: 3px;
+    background: rgb(81,92,102) linear-gradient(rgb(81,92,102), rgb(69,78,87));
+    box-shadow:
+            inset 0 1px rgba(101,114,126,1),
+            inset 0 0 1px rgba(140,150,170,.8),
+            0 1px rgb(83,94,104),
+            0 0 1px rgb(86,96,106);
+}
+
+button:active{
+    box-shadow:
+            inset 0 1px 3px rgba(0,10,20,.5),
+            0 1px rgb(83,94,104),
+            0 0 1px rgb(86,96,106);
+}
+button:focus:not(:active){
+    border: 1px solid rgb(22,32,43);
+    border-bottom: 1px solid rgb(25,34,45);
+    background: rgb(53,61,71);
+    box-shadow:
+            inset 0 1px 3px rgba(0,10,20,.5),
+            0 1px rgb(83,94,104),
+            0 0 1px rgb(86,96,106);
+    pointer-events: none;
 }
 
 footer{
