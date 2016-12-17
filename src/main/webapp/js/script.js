@@ -621,6 +621,50 @@ function deleteTeacher() {
     });
 }
 
+//--------------------------------------Exponential backoff--------------------------
+
+function turnOffAndRun() {
+    $('#config-div').hide();
+
+    var attemptsNumber = $('#attempts-number').val();
+    var urlIntercept = $('#url-intercept').find(":selected").val();
+
+    var data = {
+        attempts: attemptsNumber,
+        url: urlIntercept
+    };
+
+    sendAjax('/exponentialbackoff', 'GET', data, function () {
+
+    });
+
+    $('#attempts-number-info').html(attemptsNumber);
+    $('#url-intercept-info').html(urlIntercept);
+    $('#start-delay').html(getRandomInt(100, 1000));
+
+    $('#inform-div').show();
+}
+
+function exponentialBackoff() {
+    
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function fibonacciByIndex(index) {
+    var i;
+    var fib = [];
+
+    fib[0] = 0;
+    fib[1] = 1;
+    for (i = 2; i <= index; i++) {
+        fib[i] = fib[i - 2] + fib[i - 1];
+    }
+    return fib[index];
+}
+
 //----------------------------------------AJAX-----------------------------------------
 
 function getRequestRecursive(url, ids, accumulator, callback) {

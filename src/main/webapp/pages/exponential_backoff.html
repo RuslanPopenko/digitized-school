@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exponential backoff</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/js/script.js"></script>
+</head>
+<body>
+<div id="config-div">
+    Number of attempts:
+    <input id="attempts-number" type="number" min="1" step="1">
+    <br>
+    <br>
+    Url that need turn off:
+    <select id="url-intercept">
+        <option value="/api/persons" selected>/api/persons</option>
+        <option value="/api/pupils">/api/pupils</option>
+        <option value="/api/schools">/api/schools</option>
+        <option value="/api/schoolclasses">/api/schoolclasses</option>
+        <option value="/api/subjects">/api/subjects</option>
+        <option value="/api/teachers">/api/teachers</option>
+    </select>
+    <br>
+    <br>
+    <button onclick="turnOffAndRun();">Turn off</button>
+</div>
+<div id="inform-div" style="display: none;">
+    Number of attempts:
+    <label id="attempts-number-info"></label>
+    <br>
+    <br>
+    Url that need intercept:
+    <label id="url-intercept-info"></label>
+    <br>
+    <br>
+    Start delay in ms:
+    <label id="start-delay"></label>
+    <br>
+    <br>
+    <button onclick="exponentialBackoff();">Start</button>
+</div>
+
+
+</body>
+</html>
