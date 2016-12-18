@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.16, for Linux (x86_64)
 --
 -- Host: localhost    Database: db_digitilized_school
 -- ------------------------------------------------------
--- Server version	5.7.16-log
+-- Server version	5.7.16-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,7 +21,7 @@
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,10,'Max','Morozov',''),(2,13,'Yevhenii','Zmeul',''),(3,12,'Iryna','Rustova','\0'),(4,13,'Nadia','Danylenko','\0'),(5,12,'John','Daw',''),(6,13,'Marta','Kent','\0'),(7,40,'Jon','Snow',''),(8,36,'May','Slansa','\0'),(9,13,'Slava','Golovko',''),(10,12,'Ksenia','Petrenko','\0'),(11,12,'Valesa','Nagieva','\0'),(12,11,'Oksana','Sanava','\0');
+INSERT INTO `person` VALUES (1,10,'max','morozov',''),(2,9,'zheka','zmeul',''),(3,50,'iryna','ivanivna','\0'),(4,60,'hadia','grygoriivna','\0'),(5,18,'John','Daw',''),(6,46,'Marta','Kent','\0');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -31,7 +31,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `pupil` WRITE;
 /*!40000 ALTER TABLE `pupil` DISABLE KEYS */;
-INSERT INTO `pupil` VALUES (1,2,7,9),(2,4,7,10),(3,3,8,11),(4,1,8,12),(5,9,7,9),(6,10,7,10),(7,11,8,11),(8,12,8,12);
+INSERT INTO `pupil` VALUES (5,1,7,9),(6,2,7,10);
 /*!40000 ALTER TABLE `pupil` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -41,7 +41,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `pupil_subject_cross` WRITE;
 /*!40000 ALTER TABLE `pupil_subject_cross` DISABLE KEYS */;
-INSERT INTO `pupil_subject_cross` VALUES (1,11),(5,11),(2,12),(6,12),(3,13),(7,13),(4,14),(8,14);
+INSERT INTO `pupil_subject_cross` VALUES (5,11),(6,11),(5,12),(6,12);
 /*!40000 ALTER TABLE `pupil_subject_cross` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,7 +51,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `school` WRITE;
 /*!40000 ALTER TABLE `school` DISABLE KEYS */;
-INSERT INTO `school` VALUES (7,'185','Spec'),(8,'162','Usual');
+INSERT INTO `school` VALUES (7,'185','spec'),(8,'162','usual');
 /*!40000 ALTER TABLE `school` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `school_class` WRITE;
 /*!40000 ALTER TABLE `school_class` DISABLE KEYS */;
-INSERT INTO `school_class` VALUES (9,'5-A',7),(10,'5-B',7),(11,'5-A',8),(12,'5-B',8);
+INSERT INTO `school_class` VALUES (9,'10-A',7),(10,'10-B',7);
 /*!40000 ALTER TABLE `school_class` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,7 +71,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `school_class_subject_cross` WRITE;
 /*!40000 ALTER TABLE `school_class_subject_cross` DISABLE KEYS */;
-INSERT INTO `school_class_subject_cross` VALUES (9,11),(10,12),(11,13),(12,14);
+INSERT INTO `school_class_subject_cross` VALUES (9,11),(10,12);
 /*!40000 ALTER TABLE `school_class_subject_cross` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +81,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES (11,'Math'),(12,'Physics'),(13,'Literature'),(14,'Biology');
+INSERT INTO `subject` VALUES (11,'math'),(12,'phys');
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +91,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `teacher` WRITE;
 /*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
-INSERT INTO `teacher` VALUES (13,5),(14,6),(15,7),(16,8);
+INSERT INTO `teacher` VALUES (13,3),(14,4);
 /*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +101,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `teacher_school_class_cross` WRITE;
 /*!40000 ALTER TABLE `teacher_school_class_cross` DISABLE KEYS */;
-INSERT INTO `teacher_school_class_cross` VALUES (13,9),(14,10),(15,11),(16,12);
+INSERT INTO `teacher_school_class_cross` VALUES (13,9),(14,9),(13,10),(14,10);
 /*!40000 ALTER TABLE `teacher_school_class_cross` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +111,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `teacher_school_cross` WRITE;
 /*!40000 ALTER TABLE `teacher_school_cross` DISABLE KEYS */;
-INSERT INTO `teacher_school_cross` VALUES (13,7),(14,7),(15,8),(16,8);
+INSERT INTO `teacher_school_cross` VALUES (13,7),(14,7);
 /*!40000 ALTER TABLE `teacher_school_cross` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +121,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `teacher_subject_cross` WRITE;
 /*!40000 ALTER TABLE `teacher_subject_cross` DISABLE KEYS */;
-INSERT INTO `teacher_subject_cross` VALUES (14,11),(13,12),(15,13),(16,14);
+INSERT INTO `teacher_subject_cross` VALUES (14,11),(13,12);
 /*!40000 ALTER TABLE `teacher_subject_cross` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -134,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-17 20:10:26
+-- Dump completed on 2016-12-06 22:10:14
