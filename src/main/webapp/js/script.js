@@ -526,7 +526,7 @@ function getAllTeachers() {
                 output += ', no subjects';
             for (var j = 0; j < data[i].subjects.length; j++) {
                 output = output.concat(' ' + data[i].subjects[j].id);
-                if (j != data.subjects.length-1)
+                if (j != data[i].subjects.length-1)
                     output = output.concat(', ');
             }
             if (data[i].schools.length != 0)
@@ -535,7 +535,7 @@ function getAllTeachers() {
                 output += ', no schools';
             for (var j = 0; j < data[i].schools.length; j++) {
                 output = output.concat(' ' + data[i].schools[j].id);
-                if (j != data.schools.length-1)
+                if (j != data[i].schools.length-1)
                     output = output.concat(', ');
             }
             if (data[i].schoolClasses.length != 0)
@@ -544,7 +544,7 @@ function getAllTeachers() {
                 output += ', no schoolClasses';
             for (var j = 0; j < data[i].schoolClasses.length; j++) {
                 output = output.concat(' ' + data[i].schoolClasses[j].id);
-                if (j != data.schoolClasses.length-1)
+                if (j != data[i].schoolClasses.length-1)
                     output = output.concat(', ');
             }
             output = output.concat('<br>');
