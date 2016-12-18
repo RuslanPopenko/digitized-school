@@ -17,6 +17,8 @@ public class TurnOffApiInterceptor extends HandlerInterceptorAdapter{
     public static final String TURN_OFF_API_PARAMETER_NAME = "turnOffApi";
     //Integer
     public static final String ATTEMPTS_PARAMETER_NAME = "attemptsApiAccess";
+    //String
+    public static final String URL_INTRCEPT_PARAMETER_NAME = "urlApiIntercept";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -24,18 +26,21 @@ public class TurnOffApiInterceptor extends HandlerInterceptorAdapter{
         HttpSession session = request.getSession(true);
 
         Boolean turnOffApi = (Boolean) session.getAttribute(TURN_OFF_API_PARAMETER_NAME);
-
         Integer attemptsApiAccess = (Integer) session.getAttribute(ATTEMPTS_PARAMETER_NAME);
+        String urlApiIntercept = (String) session.getAttribute(URL_INTRCEPT_PARAMETER_NAME);
 
-        HandlerMethod handlerMethod = (HandlerMethod) handler;
-        boolean isApiHandler = handlerMethod.getBeanType().getSimpleName().endsWith("RestControllerImpl");
+        if (Objects.isNull(urlApiIntercept)) {
+            return true;
+        }
+
+        boolean isInterceptedUrl = request.getRequestURI().contains(urlApiIntercept);
 
         //simulate internal server error
-        if (isApiHandler && Objects.nonNull(turnOffApi) && turnOffApi) {
+        if (isInterceptedUrl && Objects.nonNull(turnOffApi) && turnOffApi) {
             if (Objects.nonNull(attemptsApiAccess)) {
                 attemptsApiAccess--;
                 session.setAttribute(ATTEMPTS_PARAMETER_NAME, attemptsApiAccess);
-                if (attemptsApiAccess > 0) {
+                if (attemptsApiAccess > -1) {
                     response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                     return false;
                 } else {

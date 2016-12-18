@@ -634,35 +634,100 @@ function turnOffAndRun() {
         url: urlIntercept
     };
 
-    sendAjax('/exponentialbackoff', 'GET', data, function () {
+    var url = '/exponentialbackoff';
+
+    $.post(url, data, function () {
 
     });
 
     $('#attempts-number-info').html(attemptsNumber);
     $('#url-intercept-info').html(urlIntercept);
-    $('#start-delay').html(getRandomInt(100, 1000));
+    $('#start-delay').html(getRandomArbitrary(1.2, 2).toFixed(3));
 
     $('#inform-div').show();
 }
 
 function exponentialBackoff() {
-    
+    $('#exponential-backoff-div').show();
+    var attempts = 0;
+    var  dataPoints = [];
+    makeGetUntilSuccess($('#url-intercept-info').html(), +$('#start-delay').html(), attempts, dataPoints);
 }
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+function makeGetUntilSuccess(url, delay, attempts, dataPoints) {
+    get(url, function (data) {
+        attempts++;
+        var $label = $('<label>')
+            .html("Request#" + attempts + " success! Data: " + JSON.stringify(data))
+            .attr('style', 'color:green;');
+        attempts++;
+        dataPoints.push({x: attempts - 1, y: (attempts > 1 ? +mathPowAndFixed(delay, attempts) : 0)});
+        var $timeLabel = $('<label>')
+            .html('Delay s: ' + (attempts > 1 ? mathPowAndFixed(delay, attempts) : 0))
+            .attr('style', 'color:green;');
+        $('#exponential-backoff-div')
+            .append($label)
+            .append($('<br>'))
+            .append($timeLabel)
+            .append($('<br>'));
+        draw(dataPoints);
+    }, function (jqXHR, textStatus, errorThrown) {
+        var $label = $('<label>')
+            .html("Request#" + attempts + " fail with status: " + jqXHR.status + "(" + jqXHR.statusText + ")\n")
+            .attr('style', 'color:red;');
+        attempts++;
+        dataPoints.push({x: attempts - 1, y: (attempts > 1 ? +mathPowAndFixed(delay, attempts) : 0)});
+        var $timeLabel = $('<label>')
+            .html('Delay s: ' + (attempts > 1 ? mathPowAndFixed(delay, attempts) : 0))
+            .attr('style', 'color:red;');
+        $('#exponential-backoff-div')
+            .append($label)
+            .append($('<br>'))
+            .append($timeLabel)
+            .append($('<br>'));
+        setTimeout('makeGetUntilSuccess(\'' + url + '\',' + delay + ',' + attempts + ',' + JSON.stringify(dataPoints) + ');', calcTime(delay, attempts));
+    });
 }
 
-function fibonacciByIndex(index) {
-    var i;
-    var fib = [];
+function draw(dataPoints) {
+    var options = {
+        title: {
+            text: "Exponential backoff (x: attempts, y: delay)"
+        },
+        animationEnabled: true,
+        data: [
+            {
+                type: "spline", //change it to line, area, column, pie, etc
+                dataPoints: dataPoints
+            }
+        ]
+    };
 
-    fib[0] = 0;
-    fib[1] = 1;
-    for (i = 2; i <= index; i++) {
-        fib[i] = fib[i - 2] + fib[i - 1];
-    }
-    return fib[index];
+    $("#chartContainer").CanvasJSChart(options);
+}
+
+function get(url, success, fail) {
+    $.ajax({
+        url: url,
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8',
+        data: {},
+        dataType: 'json',
+        success: success,
+        error: fail
+    });
+}
+
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function mathPowAndFixed(a, b) {
+    return Math.pow(a, b).toFixed(3);
+}
+
+function calcTime(delay, attempts) {
+    return Math.floor(mathPowAndFixed(delay, attempts) * 1000);
 }
 
 //----------------------------------------AJAX-----------------------------------------

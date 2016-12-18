@@ -5,6 +5,7 @@
     <title>Exponential backoff</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/jquery.canvasjs.min.js"></script>
 </head>
 <body>
 <div id="config-div">
@@ -26,7 +27,7 @@
     <button onclick="turnOffAndRun();">Turn off</button>
 </div>
 <div id="inform-div" style="display: none;">
-    Number of attempts:
+    Number of failed attempts:
     <label id="attempts-number-info"></label>
     <br>
     <br>
@@ -34,13 +35,18 @@
     <label id="url-intercept-info"></label>
     <br>
     <br>
-    Start delay in ms:
+    Start delay in s:
     <label id="start-delay"></label>
     <br>
     <br>
-    <button onclick="exponentialBackoff();">Start</button>
+    <button onclick="exponentialBackoff();">Start exponential backoff</button>
+    <br>
+    <br>
 </div>
+<div id="exponential-backoff-div" style="display: none;">
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
+</div>
 
 </body>
 </html>
