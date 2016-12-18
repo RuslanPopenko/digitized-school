@@ -656,14 +656,12 @@ function exponentialBackoff() {
 
 function makeGetUntilSuccess(url, delay, attempts, dataPoints) {
     get(url, function (data) {
-        attempts++;
         var $label = $('<label>')
             .html("Request#" + attempts + " success! Data: " + JSON.stringify(data))
             .attr('style', 'color:green;');
-        attempts++;
-        dataPoints.push({x: attempts - 1, y: (attempts > 1 ? +mathPowAndFixed(delay, attempts) : 0)});
+        dataPoints.push({x: attempts, y: (attempts > 0 ? +mathPowAndFixed(delay, attempts) : 0)});
         var $timeLabel = $('<label>')
-            .html('Delay s: ' + (attempts > 1 ? mathPowAndFixed(delay, attempts) : 0))
+            .html('Delay s: ' + (attempts > 0 ? mathPowAndFixed(delay, attempts) : 0))
             .attr('style', 'color:green;');
         $('#exponential-backoff-div')
             .append($label)
@@ -675,16 +673,16 @@ function makeGetUntilSuccess(url, delay, attempts, dataPoints) {
         var $label = $('<label>')
             .html("Request#" + attempts + " fail with status: " + jqXHR.status + "(" + jqXHR.statusText + ")\n")
             .attr('style', 'color:red;');
-        attempts++;
-        dataPoints.push({x: attempts - 1, y: (attempts > 1 ? +mathPowAndFixed(delay, attempts) : 0)});
+        dataPoints.push({x: attempts, y: (attempts > 0 ? +mathPowAndFixed(delay, attempts) : 0)});
         var $timeLabel = $('<label>')
-            .html('Delay s: ' + (attempts > 1 ? mathPowAndFixed(delay, attempts) : 0))
+            .html('Delay s: ' + (attempts > 0 ? mathPowAndFixed(delay, attempts) : 0))
             .attr('style', 'color:red;');
         $('#exponential-backoff-div')
             .append($label)
             .append($('<br>'))
             .append($timeLabel)
             .append($('<br>'));
+        attempts++;
         setTimeout('makeGetUntilSuccess(\'' + url + '\',' + delay + ',' + attempts + ',' + JSON.stringify(dataPoints) + ');', calcTime(delay, attempts));
     });
 }
