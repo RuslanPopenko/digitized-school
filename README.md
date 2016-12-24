@@ -1,6 +1,8 @@
 Digitized schools
 =================
 
+[![Build Status](https://travis-ci.org/RuslanPopenko/digitized-school.svg?branch=master)](https://travis-ci.org/RuslanPopenko/digitized-school)
+
 Prerequisites
 -------------
 
