@@ -2,6 +2,7 @@ Digitized schools
 =================
 
 [![Build Status](https://travis-ci.org/RuslanPopenko/digitized-school.svg?branch=master)](https://travis-ci.org/RuslanPopenko/digitized-school)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1ed8b70e024e407fb1214ffa6d7b25c7)](https://www.codacy.com/app/RuslanPopenko/digitized-school?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RuslanPopenko/digitized-school&amp;utm_campaign=Badge_Grade)
 
 Prerequisites
 -------------
