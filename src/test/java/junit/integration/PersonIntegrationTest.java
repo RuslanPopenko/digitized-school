@@ -10,7 +10,7 @@ public class PersonIntegrationTest {
 
     private static final String GET_PERSON_URL = "http://localhost:8080/api/persons/{id}";
 
-    @Test
+//    @Test
     public void get_person_by_id_integration_test() {
         RestTemplate restTemplate = new RestTemplate();
         Person person = null;
