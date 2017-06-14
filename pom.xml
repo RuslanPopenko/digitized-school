@@ -101,41 +101,64 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <!--<plugin>-->
+                <!--<groupId>pl.project13.maven</groupId>-->
+                <!--<artifactId>git-commit-id-plugin</artifactId>-->
+                <!--<version>2.1.13</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals>-->
+                            <!--<goal>revision</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+                <!--<configuration>-->
+                    <!--<generateGitPropertiesFile>true</generateGitPropertiesFile>-->
+                    <!--<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-pmd-plugin</artifactId>-->
+                <!--<version>3.7</version>-->
+                <!--<configuration>-->
+                    <!--<failOnViolation>true</failOnViolation>-->
+                    <!--<minimumTokens>10</minimumTokens>-->
+                    <!--<targetJdk>1.8</targetJdk>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>validate</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>cpd</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
             <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-                <version>2.1.13</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>revision</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
                 <configuration>
-                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                    <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+                    <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>develop</developBranchName>
+                        <featureBranchPrefix>feature-</featureBranchPrefix>
+                        <releaseBranchPrefix>release-</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+                        <versionTagPrefix>streamflow-</versionTagPrefix>
+                    </flowInitContext>
+                    <username>${git.username}</username>
+                    <password>${git.password}</password>
+                    <noDeploy>true</noDeploy>
+                    <pushReleases>true</pushReleases>
+                    <pushFeatures>true</pushFeatures>
+                    <squash>true</squash>
+                    <allowUntracked>true</allowUntracked>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.7</version>
-                <configuration>
-                    <failOnViolation>true</failOnViolation>
-                    <minimumTokens>10</minimumTokens>
-                    <targetJdk>1.8</targetJdk>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>cpd</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
+
     </build>
 
     <repositories>
