@@ -151,8 +151,8 @@
                     <password>${git.password}</password>
                     <noDeploy>true</noDeploy>
                     <pushReleases>true</pushReleases>
-                    <pushFeatures>true</pushFeatures>
                     <squash>true</squash>
+                    <keepBranch>true</keepBranch>
                     <allowUntracked>true</allowUntracked>
                 </configuration>
             </plugin>
@@ -172,4 +172,7 @@
             <url>https://repo.spring.io/libs-release</url>
         </pluginRepository>
     </pluginRepositories>
+    <scm>
+        <connection>scm:git:https://github.com/RuslanPopenko/digitized-school.git</connection>
+    </scm>
 </project>
